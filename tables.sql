@@ -5,6 +5,8 @@ DROP TABLE Rezervacia;
 DROP TABLE Kostym;
 DROP TABLE Doplnok;
 DROP TABLE Uzivatel;
+DROP TABLE Kostym_rezervacia;
+DROP TABLE Dosplnok_rezervacia;
 
 CREATE TABLE Uzivatel (
                           ID int NOT NULL PRIMARY KEY,
@@ -79,4 +81,16 @@ CREATE TABLE Wishlist (
                           uzivID int NOT NULL,
                           CONSTRAINT FK_Wishlislt_Uzivatel_ID FOREIGN KEY (uzivID) REFERENCES Uzivatel(ID)
 
+);
+
+CREATE TABLE Kostym_rezervacia(
+                                  ID int NOT NULL PRIMARY KEY,
+                                  UzivID int NOT NULL,
+                                  KostymID int NOT NULL
+);
+
+CREATE TABLE Dosplnok_rezervacia(
+                                    ID int NOT NULL PRIMARY KEY,
+                                    UzivID int NOT NULL,
+                                    DoplnokID int NOT NULL
 );
