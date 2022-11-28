@@ -1,10 +1,12 @@
 package com.pdb_db.pdb_proj.domain.recenzia_doplnok;
 
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
+
 public interface RecenziaDoplnokInterface {
 
-    String getId();
+    Integer getId();
 
-    void setId(String id);
+    void setId(Integer id);
 
 
     String getNazov();
@@ -17,23 +19,23 @@ public interface RecenziaDoplnokInterface {
     void setPopis(String popis);
 
 
-    String getSuhlas();
+    Integer getSuhlas();
 
-    void setSuhlas(String suhlas);
-
-
-    String getNesuhlas();
-
-    void setNesuhlas(String nesuhlas);
+    void setSuhlas(Integer suhlas);
 
 
-    String getUzivid();
+    Integer getNesuhlas();
 
-    void setUzivid(String uzivid);
+    void setNesuhlas(Integer nesuhlas);
 
 
-    String getDoplnokid();
+    Integer getUzivid();
 
-    void setDoplnokid(String doplnokid);
+    void setUzivid(Integer uzivid);
+
+
+    Integer getDoplnokid();
+
+    void setDoplnokid(Integer doplnokid);
 
 }
