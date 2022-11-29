@@ -1,26 +1,49 @@
 package com.pdb_db.pdb_proj.domain.kostym;
 
 
+import javax.persistence.*;
+@Entity
+@Table
 public class Kostym implements KostymInterface {
+  @Id
+  @SequenceGenerator(
+          name = "kostym_sequence",
+          sequenceName = "kostym_sequence",
+          allocationSize = 1
+  )
+  @GeneratedValue
+          (strategy = GenerationType.SEQUENCE,
+                  generator = "kostym_sequence"
+          )
 
-  private String id;
+  private Integer id;
   private String nazov;
   private String popis;
   private String material;
   private String kategoria;
-  private String velkost;
+  private Integer velkost;
   private java.sql.Date vyroba;
 
 
   public Kostym(){}
 
+  public Kostym( Integer id, String nazov, String popis, String material,String kategoria,Integer velkost,java.sql.Date vyroba)
+  {
+    this.id = id;
+    this.nazov = nazov;
+    this.popis = popis;
+    this.material = material;
+    this.kategoria = kategoria;
+    this.velkost = velkost;
+    this.vyroba = vyroba;
+  }
 
   @Override
-  public String getId() {
+  public Integer getId() {
     return id;
   }
   @Override
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -66,11 +89,11 @@ public class Kostym implements KostymInterface {
 
 
   @Override
-  public String getVelkost() {
+  public Integer getVelkost() {
     return velkost;
   }
   @Override
-  public void setVelkost(String velkost) {
+  public void setVelkost(Integer velkost) {
     this.velkost = velkost;
   }
 
@@ -84,4 +107,16 @@ public class Kostym implements KostymInterface {
     this.vyroba = vyroba;
   }
 
+  @Override
+  public String toString()
+  {
+    return "Kostym{" +
+            "id=" + id+
+            "nazov=" + nazov+ '\'' +
+            "popis=" + popis+ '\'' +
+            "material=" + material+
+            "velkost=" + velkost +
+            "kategoria=" + kategoria +
+            "vyroba=" + vyroba +'}';
+  }
 }

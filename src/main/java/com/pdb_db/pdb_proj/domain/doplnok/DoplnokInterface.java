@@ -2,9 +2,9 @@ package com.pdb_db.pdb_proj.domain.doplnok;
 
 public interface DoplnokInterface {
 
-    String getId();
+    Integer getId();
 
-    void setId(String id);
+    void setId(Integer id);
 
 
     String getNazov();

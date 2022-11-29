@@ -2,18 +2,18 @@ package com.pdb_db.pdb_proj.domain.kostym_rezervacia;
 
 public interface KostymRezervaciaInterface {
 
-    String getId();
+    Integer getId();
 
-    void setId(String id);
-
-
-    String getUzivid();
-
-    void setUzivid(String uzivid);
+    void setId(Integer id);
 
 
-    String getKostymid();
+    Integer getUzivid();
 
-    void setKostymid(String kostymid);
+    void setUzivid(Integer uzivid);
+
+
+    Integer getKostymid();
+
+    void setKostymid(Integer kostymid);
 
 }

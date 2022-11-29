@@ -2,9 +2,9 @@ package com.pdb_db.pdb_proj.domain.kostym;
 
 public interface KostymInterface {
 
-    String getId();
+    Integer getId();
 
-    void setId(String id);
+    void setId(Integer id);
 
 
     String getNazov();
@@ -27,9 +27,9 @@ public interface KostymInterface {
     void setKategoria(String kategoria);
 
 
-    String getVelkost();
+    Integer getVelkost();
 
-    void setVelkost(String velkost);
+    void setVelkost(Integer velkost);
 
 
     java.sql.Date getVyroba();

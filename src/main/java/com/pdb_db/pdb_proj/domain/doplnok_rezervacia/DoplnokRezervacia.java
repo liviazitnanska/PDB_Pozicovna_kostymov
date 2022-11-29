@@ -1,33 +1,33 @@
-package com.pdb_db.pdb_proj.domain.kostym_rezervacia;
+package com.pdb_db.pdb_proj.domain.doplnok_rezervacia;
 
 import javax.persistence.*;
 
 @Entity
 @Table
-public class KostymRezervacia implements KostymRezervaciaInterface {
+public class DoplnokRezervacia implements DoplnokRezervaciaInterface{
   @Id
   @SequenceGenerator(
-          name = "kostymrezervacia_sequence",
-          sequenceName = "kostymrezervacia_sequence",
+          name = "doplnokrezervacia_sequence",
+          sequenceName = "doplnokrezervacia_sequence",
           allocationSize = 1
   )
   @GeneratedValue
           (strategy = GenerationType.SEQUENCE,
-                  generator = "kostymrezervacia_sequence"
+                  generator = "doplnokrezervacia_sequence"
           )
+
   private Integer id;
   private Integer uzivid;
-  private Integer kostymid;
+  private Integer doplnokid;
 
+  public DoplnokRezervacia(){}
 
-  public KostymRezervacia(){}
-  public KostymRezervacia(Integer id, Integer uzivid, Integer kostymid)
+  public DoplnokRezervacia(Integer id, Integer uzivid, Integer doplnokid)
   {
     this.id = id;
     this.uzivid = uzivid;
-    this.kostymid = kostymid;
+    this.doplnokid = doplnokid;
   }
-
 
   @Override
   public Integer getId() {
@@ -50,12 +50,12 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
 
 
   @Override
-  public Integer getKostymid() {
-    return kostymid;
+  public Integer getDoplnokid() {
+    return doplnokid;
   }
   @Override
-  public void setKostymid(Integer kostymid) {
-    this.kostymid = kostymid;
+  public void setDoplnokid(Integer doplnokid) {
+    this.doplnokid = doplnokid;
   }
 
   @Override
@@ -64,7 +64,7 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
     return "DosplnokRezervacia{" +
             "id=" + id+
             "uzivid=" + uzivid+ '\'' +
-            "kostymid=" + kostymid +'}';
+            "doplnokid=" + doplnokid +'}';
   }
 
 }
