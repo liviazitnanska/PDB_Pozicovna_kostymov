@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class DoplnokRezervacia implements DoplnokRezervaciaInterface{
+public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
   @Id
   @SequenceGenerator(
           name = "doplnokrezervacia_sequence",
@@ -61,7 +61,7 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface{
   @Override
   public String toString()
   {
-    return "DosplnokRezervacia{" +
+    return "DoplnokRezervacia{" +
             "id=" + id+
             "uzivid=" + uzivid+ '\'' +
             "doplnokid=" + doplnokid +'}';
