@@ -39,6 +39,8 @@ public class Rezervacia implements RezervaciaInterface {
     this.uzivid=uzivid;
   }
 
+
+
   public Rezervacia(Integer id,
                     LocalDate casPozicania,
                     LocalDate casVratenia,
@@ -59,6 +61,7 @@ public class Rezervacia implements RezervaciaInterface {
     this.casPozicania=casPozicania;
     this.casVratenia=casVratenia;
     this.vratenie=vratenie;
+    this.uzivid = uzivid;
   }
 
   @Override

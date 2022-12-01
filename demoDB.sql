@@ -38,11 +38,11 @@ INSERT INTO Wishlist (ID, Nazov,uzivID) VALUES (4,'W1',1);
 INSERT INTO Wishlist (ID, Nazov,uzivID) VALUES (5,'W2',4);
 INSERT INTO Wishlist (ID, Nazov,uzivID) VALUES (6,'Chcem',4);
 
-INSERT INTO Kostym_rezervacia(ID, UzivID,KostymID) VALUES (1,1,1);
-INSERT INTO Kostym_rezervacia(ID, UzivID,KostymID) VALUES (2,1,2);
-INSERT INTO Kostym_rezervacia(ID, UzivID,KostymID) VALUES (3,3,3);
-INSERT INTO Kostym_rezervacia(ID, UzivID,KostymID) VALUES (4,2,2);
+INSERT INTO Kostym_rezervacia(ID, UzivID,RezervaciaID,KostymID) VALUES (1,1,2,1);
+INSERT INTO Kostym_rezervacia(ID, UzivID,RezervaciaID,KostymID) VALUES (2,1,3,2);
+INSERT INTO Kostym_rezervacia(ID, UzivID,RezervaciaID,KostymID) VALUES (3,3,2,3);
+INSERT INTO Kostym_rezervacia(ID, UzivID,RezervaciaID,KostymID) VALUES (4,2,3,2);
 
-INSERT INTO Dosplnok_rezervacia(ID,UzivID, DoplnokID) VALUES (1,1,1);
-INSERT INTO Dosplnok_rezervacia(ID,UzivID, DoplnokID) VALUES (2,4,3);
-INSERT INTO Dosplnok_rezervacia(ID,UzivID, DoplnokID) VALUES (3,3,2);
+INSERT INTO Dosplnok_rezervacia(ID,UzivID,RezervaciaID, DoplnokID) VALUES (1,1,1,1);
+INSERT INTO Dosplnok_rezervacia(ID,UzivID,RezervaciaID, DoplnokID) VALUES (2,4,2,3);
+INSERT INTO Dosplnok_rezervacia(ID,UzivID,RezervaciaID, DoplnokID) VALUES (3,3,2,2);

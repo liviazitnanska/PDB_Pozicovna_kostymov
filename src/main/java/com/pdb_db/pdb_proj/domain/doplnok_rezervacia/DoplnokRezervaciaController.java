@@ -1,6 +1,10 @@
 package com.pdb_db.pdb_proj.domain.doplnok_rezervacia;
 
 import com.pdb_db.pdb_proj.domain.kostym.Kostym;
+import com.pdb_db.pdb_proj.domain.kostym_rezervacia.KostymRezervacia;
+import com.pdb_db.pdb_proj.domain.rezervacia.Rezervacia;
+import com.pdb_db.pdb_proj.dto.DTODoplnokRezervacia;
+import com.pdb_db.pdb_proj.dto.DTOKostymRezervacia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,9 +28,19 @@ public class DoplnokRezervaciaController
         return doplnokRezervaciaService.getDoplnokRezervacie();
     }
 
-    @PostMapping
+    /*@PostMapping
     public void registerNewDoplnokRezervacia(@RequestBody DoplnokRezervacia doplnokRezervacia)
     {
+        doplnokRezervaciaService.addNewDoplnokRezervacia(doplnokRezervacia);
+    }*/
+
+    @PostMapping
+    public void registerNewDoplnokRezervacia(@RequestBody DTODoplnokRezervacia dtoDoplnokRezervacia)
+    {
+        Rezervacia rezervacia = new Rezervacia(dtoDoplnokRezervacia.getCasPozicania(),dtoDoplnokRezervacia.getCasVratenia(),dtoDoplnokRezervacia.getVratenie(),dtoDoplnokRezervacia.getUzivid());
+        doplnokRezervaciaService.addNewRezervacia(rezervacia);
+
+        DoplnokRezervacia doplnokRezervacia = new DoplnokRezervacia(dtoDoplnokRezervacia.getUzivid(),dtoDoplnokRezervacia.getDoplnokid(),rezervacia.getId());
         doplnokRezervaciaService.addNewDoplnokRezervacia(doplnokRezervacia);
     }
 

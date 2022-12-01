@@ -1,10 +1,12 @@
 package com.pdb_db.pdb_proj.domain.uzivatel;
 
+import com.pdb_db.pdb_proj.domain.doplnok.Doplnok;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UzivatelService {
@@ -21,10 +23,20 @@ public class UzivatelService {
     }
 
 
-    public void addNewUzivatel(Uzivatel uzivatel) {
+    /*Operacia Vytvorit uzivatela*/
+    public void addNewUzivatel(Uzivatel uzivatel)
+    {
+        //Can't have new user with same email
+        Optional<Uzivatel> uzivatelOptional =  uzivatelRepository.findUzivatelByEmail(uzivatel.getEmail());
+
+        if(uzivatelOptional.isPresent())
+        {
+            throw new IllegalStateException("Uzivatel with this email already exists");
+        }
         uzivatelRepository.save(uzivatel);
     }
 
+    /*Operacia: Zmazat uzivatela*/
     public void deleteUzivatel(Integer id) {
         boolean exists = uzivatelRepository.existsById(id);
         if (!exists){
@@ -33,6 +45,7 @@ public class UzivatelService {
         uzivatelRepository.deleteById(id);
     }
 
+    /*Operacia: Uprava profilu*/
     @Transactional
     public void updateUzivatel(Integer id,
                                String meno,

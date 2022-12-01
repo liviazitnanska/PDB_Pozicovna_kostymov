@@ -1,10 +1,13 @@
 package com.pdb_db.pdb_proj.domain.recenzia_kostym;
 
+import com.pdb_db.pdb_proj.domain.kostym.Kostym;
+import com.pdb_db.pdb_proj.domain.uzivatel.Uzivatel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecenziaKostymService {
@@ -22,10 +25,27 @@ public class RecenziaKostymService {
     }
 
 
-    public void addNewRecenziaKostym(RecenziaKostym recenziaKostym) {
+    //Operacia: Pridanie rezencie kostymu
+    public void addNewRecenziaKostym(RecenziaKostym recenziaKostym)
+    {
+        //Check user
+        Optional<Uzivatel> uzivatelOptional = recenziaKostymRepository.findUzivatelById(recenziaKostym.getUzivid());
+        if(!uzivatelOptional.isPresent())
+        {
+            throw new IllegalStateException("Can not create costume reservation to non existent user");
+        }
+
+        //Check costume
+        Optional<Kostym> kostymOptional = recenziaKostymRepository.findKostymById(recenziaKostym.getKostymid());
+        if(!kostymOptional.isPresent())
+        {
+            throw new IllegalStateException("Can not create costume reservation for non existent costume");
+        }
+
         recenziaKostymRepository.save(recenziaKostym);
     }
 
+    //Operacia: Zmazanie rezencie kostymu
     public void deleteRecenziaKostym(Integer id) {
         boolean exists = recenziaKostymRepository.existsById(id);
         if (!exists){
@@ -34,6 +54,7 @@ public class RecenziaKostymService {
         recenziaKostymRepository.deleteById(id);
     }
 
+    //Operiacia: Pridanie hodnotenia (suhlas/Nesuhlas) k recenzii
     @Transactional
     public void updateRecenziaKostym(Integer id, String nazov, String popis, Integer suhlas, Integer nesuhlas, Integer uzivid, Integer kostymid) {
         RecenziaKostym rkR = recenziaKostymRepository.findById(id

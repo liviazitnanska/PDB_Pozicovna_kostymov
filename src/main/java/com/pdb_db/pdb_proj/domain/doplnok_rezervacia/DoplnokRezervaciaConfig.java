@@ -14,7 +14,7 @@ public class DoplnokRezervaciaConfig {
     {
         return args -> {
             DoplnokRezervacia jedna = new DoplnokRezervacia(1,1,1);
-            DoplnokRezervacia dva = new DoplnokRezervacia(2,2,2);
+            DoplnokRezervacia dva = new DoplnokRezervacia(2,2,1);
             repository.saveAll(
                     List.of(jedna,dva)
             );

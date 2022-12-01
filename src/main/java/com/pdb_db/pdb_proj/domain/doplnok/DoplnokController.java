@@ -27,6 +27,11 @@ public class DoplnokController
     {
         doplnokService.addNewDoplnok(doplnok);
     }
+   /* @PostMapping
+    public void pokus(@RequestParam(value = "s") String s)
+    {
+        System.out.println(s);
+    }*/
 
     @DeleteMapping(path = "{doplnokId}")
     public void deleteDoplnok(@PathVariable("doplnokId") Integer doplnokId)

@@ -13,12 +13,12 @@ public class PdbProjApplication {
         SpringApplication.run(PdbProjApplication.class, args);
     }
 
-    @Bean
+    /*@Bean
     CommandLineRunner commandLineRunner(KafkaTemplate<String,String> kafkaTemplate)
     {
         return args -> {
            // kafkaTemplate.send("pdb","ahoooj");
         };
-    }
+    }*/
 
 }

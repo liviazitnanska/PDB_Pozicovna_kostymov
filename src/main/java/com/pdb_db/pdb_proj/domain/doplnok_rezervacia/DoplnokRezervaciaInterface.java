@@ -16,4 +16,8 @@ public interface DoplnokRezervaciaInterface {
 
     void setDoplnokid(Integer doplnokid);
 
+    Integer getRezervaciaid();
+    void setRezervaciaid(Integer rezervaciaid);
+
+
 }

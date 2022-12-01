@@ -24,6 +24,12 @@ public class KostymController
         return kostymService.getKostymy();
     }
 
+    @GetMapping
+    public Kostym getKostymById(Integer id)
+    {
+        return kostymService.getKostymById(id);
+    }
+
     @PostMapping
     public void registerNewKostym(@RequestBody Kostym kostym)
     {

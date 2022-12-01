@@ -86,11 +86,13 @@ CREATE TABLE Wishlist (
 CREATE TABLE Kostym_rezervacia(
                                   ID int NOT NULL PRIMARY KEY,
                                   UzivID int NOT NULL,
+                                  RezervaciaID int NOT NULL,
                                   KostymID int NOT NULL
 );
 
-CREATE TABLE Dosplnok_rezervacia(
+CREATE TABLE Doplnok_rezervacia(
                                     ID int NOT NULL PRIMARY KEY,
                                     UzivID int NOT NULL,
+                                    RezervaciaID int NOT NULL,
                                     DoplnokID int NOT NULL
 );

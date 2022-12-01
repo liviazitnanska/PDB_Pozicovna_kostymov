@@ -1,11 +1,14 @@
 package com.pdb_db.pdb_proj.domain.recenzia_doplnok;
 
 
+import com.pdb_db.pdb_proj.domain.doplnok.Doplnok;
+import com.pdb_db.pdb_proj.domain.uzivatel.Uzivatel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecenziaDoplnokService {
@@ -24,6 +27,20 @@ public class RecenziaDoplnokService {
 
 
     public void addNewRecenziaDoplnok(RecenziaDoplnok recenziaDoplnok) {
+
+        //Check user
+        Optional<Uzivatel> uzivatelOptional = recenziaDoplnokRepository.findUzivatelById(recenziaDoplnok.getUzivid());
+        if(!uzivatelOptional.isPresent())
+        {
+            throw new IllegalStateException("Can not create doplnok reservation to non existent user");
+        }
+
+        //Check doplnok
+        Optional<Doplnok> doplnokOptional = recenziaDoplnokRepository.findDoplnokById(recenziaDoplnok.getDoplnokid());
+        if(!doplnokOptional.isPresent())
+        {
+            throw new IllegalStateException("Can not create costume reservation for non existent costume");
+        }
         recenziaDoplnokRepository.save(recenziaDoplnok);
     }
 

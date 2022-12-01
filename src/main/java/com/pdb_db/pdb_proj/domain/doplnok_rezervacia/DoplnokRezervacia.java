@@ -20,13 +20,15 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
   private Integer uzivid;
   private Integer doplnokid;
 
+  private Integer rezervaciaid;
+
+
   public DoplnokRezervacia(){}
 
-  public DoplnokRezervacia(Integer id, Integer uzivid, Integer doplnokid)
-  {
-    this.id = id;
+  public DoplnokRezervacia(Integer uzivid, Integer doplnokid, Integer rezervaciaid) {
     this.uzivid = uzivid;
     this.doplnokid = doplnokid;
+    this.rezervaciaid = rezervaciaid;
   }
 
   @Override
@@ -56,6 +58,16 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
   @Override
   public void setDoplnokid(Integer doplnokid) {
     this.doplnokid = doplnokid;
+  }
+
+  @Override
+  public Integer getRezervaciaid() {
+    return rezervaciaid;
+  }
+
+  @Override
+  public void setRezervaciaid(Integer rezervaciaid) {
+    this.rezervaciaid =rezervaciaid;
   }
 
   @Override

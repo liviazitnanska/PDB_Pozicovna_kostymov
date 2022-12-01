@@ -24,6 +24,16 @@ public class KostymService {
         return kostymRepository.findAll();
     }
 
+    public Kostym getKostymById(Integer id)
+    {
+        Optional <Kostym> optionalKostym = kostymRepository.findById(id);
+        if (!optionalKostym.isPresent())
+        {
+            throw new IllegalStateException("This Costume does not exist");
+        }
+        return optionalKostym.get();
+    }
+
     public void addNewKostym(Kostym kostym)
     {
         //System.out.println(kostym);

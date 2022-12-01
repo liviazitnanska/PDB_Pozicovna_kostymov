@@ -9,4 +9,7 @@ public interface UzivatelRepository
 
     @Override
     Optional<Uzivatel> findById(Integer id);
+
+    Optional<Uzivatel> findUzivatelByEmail(String email);
+
 }

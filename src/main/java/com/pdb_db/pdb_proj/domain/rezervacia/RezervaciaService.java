@@ -23,10 +23,12 @@ public class RezervaciaService {
     }
 
 
+    //Operacia: Vytvorenie rezervacie
     public void addNewRezervacia(Rezervacia rezervacia) {
         rezervaciaRepository.save(rezervacia);
     }
 
+    //Operacia: Zrusenie rezervacie
     public void deleteRezervacia(Integer id) {
         boolean exists = rezervaciaRepository.existsById(id);
         if (!exists){

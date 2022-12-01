@@ -18,16 +18,17 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
   private Integer id;
   private Integer uzivid;
   private Integer kostymid;
+  private Integer rezervaciaid;
+
 
 
   public KostymRezervacia(){}
-  public KostymRezervacia(Integer id, Integer uzivid, Integer kostymid)
-  {
-    this.id = id;
+
+  public KostymRezervacia(Integer uzivid, Integer kostymid, Integer rezervaciaid) {
     this.uzivid = uzivid;
     this.kostymid = kostymid;
+    this.rezervaciaid = rezervaciaid;
   }
-
 
   @Override
   public Integer getId() {
@@ -56,6 +57,17 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
   @Override
   public void setKostymid(Integer kostymid) {
     this.kostymid = kostymid;
+  }
+
+  @Override
+  public Integer getRezervaciaid() {
+    return rezervaciaid;
+  }
+
+  @Override
+  public void setRezervaciaid(Integer rezervaciaid) {
+    this.rezervaciaid = rezervaciaid;
+
   }
 
   @Override

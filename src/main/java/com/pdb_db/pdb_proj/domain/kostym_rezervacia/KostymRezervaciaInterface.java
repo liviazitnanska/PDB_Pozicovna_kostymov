@@ -16,4 +16,8 @@ public interface KostymRezervaciaInterface {
 
     void setKostymid(Integer kostymid);
 
+    Integer getRezervaciaid();
+
+    void setRezervaciaid(Integer rezervaciaid);
+
 }
