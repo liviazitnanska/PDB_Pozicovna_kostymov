@@ -2,9 +2,9 @@ package com.pdb_db.pdb_proj.domain.wishlist;
 
 public interface WishlistInterface {
 
-    String getId();
+    Integer getId();
 
-    void setId(String id);
+    void setId(Integer id);
 
 
     String getNazov();
@@ -12,7 +12,7 @@ public interface WishlistInterface {
     void setNazov(String nazov);
 
 
-    String getUzivid();
+    Integer getUzivid();
 
-    void setUzivid(String uzivid);
+    void setUzivid(Integer uzivid);
 }

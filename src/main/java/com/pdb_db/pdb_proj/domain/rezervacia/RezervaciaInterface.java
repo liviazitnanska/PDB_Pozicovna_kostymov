@@ -1,29 +1,31 @@
 package com.pdb_db.pdb_proj.domain.rezervacia;
 
+import java.time.LocalDate;
+
 public interface RezervaciaInterface {
 
-    String getId();
+    Integer getId();
 
-    void setId(String id);
-
-
-    java.sql.Date getCasPozicania();
-
-    void setCasPozicania(java.sql.Date casPozicania);
+    void setId(Integer id);
 
 
-    java.sql.Date getCasVratenia();
+    LocalDate getCasPozicania();
 
-    void setCasVratenia(java.sql.Date casVratenia);
-
-
-    String getVratenie();
-
-    void setVratenie(String vratenie);
+    void setCasPozicania(LocalDate casPozicania);
 
 
-    String getUzivid();
+    LocalDate getCasVratenia();
 
-    void setUzivid(String uzivid);
+    void setCasVratenia(LocalDate casVratenia);
+
+
+    Integer getVratenie();
+
+    void setVratenie(Integer vratenie);
+
+
+    Integer getUzivid();
+
+    void setUzivid(Integer uzivid);
 
 }

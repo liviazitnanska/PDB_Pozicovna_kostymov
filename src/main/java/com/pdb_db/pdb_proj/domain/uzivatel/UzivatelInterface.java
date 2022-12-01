@@ -2,9 +2,9 @@ package com.pdb_db.pdb_proj.domain.uzivatel;
 
 public interface UzivatelInterface {
 
-    String getId();
+    Integer getId();
 
-    void setId(String id);
+    void setId(Integer id);
 
 
     String getMeno();
@@ -42,13 +42,13 @@ public interface UzivatelInterface {
     void setUlica(String ulica);
 
 
-    String getCislodomu();
+    Integer getCislodomu();
 
-    void setCislodomu(String cislodomu);
+    void setCislodomu(Integer cislodomu);
 
 
-    String getPsc();
+    Integer getPsc();
 
-    void setPsc(String psc);
+    void setPsc(Integer psc);
 
 }

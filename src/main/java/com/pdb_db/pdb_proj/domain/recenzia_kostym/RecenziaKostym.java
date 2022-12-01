@@ -1,26 +1,76 @@
 package com.pdb_db.pdb_proj.domain.recenzia_kostym;
 
+import javax.persistence.*;
 
+@Entity
+@Table
 public class RecenziaKostym implements RecenziaKostymInterface {
 
-  private String id;
+  @Id
+  @SequenceGenerator(
+          name = "recenziaKostym_sequence",
+          sequenceName = "recenziaKostym_sequence",
+          allocationSize = 1
+  )
+  @GeneratedValue(
+          strategy = GenerationType.SEQUENCE,
+          generator = "recenziaKostym_sequence"
+  )
+  private Integer id;
   private String nazov;
   private String popis;
-  private String suhlas;
-  private String nesuhlas;
-  private String uzivid;
-  private String kostymid;
+  private Integer suhlas;
+  private Integer nesuhlas;
+  private Integer uzivid;
+  private Integer kostymid;
 
 
   public RecenziaKostym(){}
+  public RecenziaKostym(Integer id,
+                        String nazov,
+                        String popis,
+                        Integer suhlas,
+                        Integer nesuhlas,
+                        Integer uzivid,
+                        Integer kostymid ){
+    this.id = id;
+    this.nazov = nazov;
+    this.popis = popis;
+    this.suhlas = suhlas;
+    this.nesuhlas = nesuhlas;
+    this.uzivid = uzivid;
+    this.kostymid = kostymid;
+  }
+
+  public RecenziaKostym(Integer id,
+                        String nazov,
+                        String popis,
+                        Integer suhlas,
+                        Integer nesuhlas ){
+    this.id = id;
+    this.nazov = nazov;
+    this.popis = popis;
+    this.suhlas = suhlas;
+    this.nesuhlas = nesuhlas;
+  }
+
+  public RecenziaKostym(String nazov,
+                        String popis,
+                        Integer suhlas,
+                        Integer nesuhlas ){
+    this.nazov = nazov;
+    this.popis = popis;
+    this.suhlas = suhlas;
+    this.nesuhlas = nesuhlas;
+  }
 
 
   @Override
-  public String getId() {
+  public Integer getId() {
     return id;
   }
   @Override
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -46,41 +96,41 @@ public class RecenziaKostym implements RecenziaKostymInterface {
 
 
   @Override
-  public String getSuhlas() {
+  public Integer getSuhlas() {
     return suhlas;
   }
   @Override
-  public void setSuhlas(String suhlas) {
+  public void setSuhlas(Integer suhlas) {
     this.suhlas = suhlas;
   }
 
 
   @Override
-  public String getNesuhlas() {
+  public Integer getNesuhlas() {
     return nesuhlas;
   }
   @Override
-  public void setNesuhlas(String nesuhlas) {
+  public void setNesuhlas(Integer nesuhlas) {
     this.nesuhlas = nesuhlas;
   }
 
 
   @Override
-  public String getUzivid() {
+  public Integer getUzivid() {
     return uzivid;
   }
   @Override
-  public void setUzivid(String uzivid) {
+  public void setUzivid(Integer uzivid) {
     this.uzivid = uzivid;
   }
 
 
   @Override
-  public String getKostymid() {
+  public Integer getKostymid() {
     return kostymid;
   }
   @Override
-  public void setKostymid(String kostymid) {
+  public void setKostymid(Integer kostymid) {
     this.kostymid = kostymid;
   }
 

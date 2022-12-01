@@ -1,9 +1,23 @@
 package com.pdb_db.pdb_proj.domain.uzivatel;
 
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Uzivatel implements UzivatelInterface {
 
-  private String id;
+  @Id
+  @SequenceGenerator(
+          name = "uzivatel_sequence",
+          sequenceName = "uzivatel_sequence",
+          allocationSize = 1
+  )
+  @GeneratedValue(
+          strategy = GenerationType.SEQUENCE,
+          generator = "uzivatel_sequence"
+  )
+  private Integer id;
   private String meno;
   private String priezvisko;
   private String email;
@@ -11,18 +25,78 @@ public class Uzivatel implements UzivatelInterface {
   private String stat;
   private String mesto;
   private String ulica;
-  private String cislodomu;
-  private String psc;
+  private Integer cislodomu;
+  private Integer psc;
 
 
   public Uzivatel(){}
+  public Uzivatel(Integer id,
+                  String meno,
+                  String priezvisko,
+                  String email,
+                  String telefon,
+                  String stat,
+                  String mesto,
+                  String ulica,
+                  Integer cislodomu,
+                  Integer psc){
+    this.id=id;
+    this.meno=meno;
+    this.priezvisko=priezvisko;
+    this.email=email;
+    this.telefon=telefon;
+    this.stat=stat;
+    this.mesto=mesto;
+    this.ulica=ulica;
+    this.cislodomu=cislodomu;
+    this.psc=psc;
+  }
+
+  public Uzivatel(String meno,
+                  String priezvisko,
+                  String email,
+                  String telefon,
+                  String stat,
+                  String mesto,
+                  String ulica,
+                  Integer cislodomu,
+                  Integer psc){
+    this.meno=meno;
+    this.priezvisko=priezvisko;
+    this.email=email;
+    this.telefon=telefon;
+    this.stat=stat;
+    this.mesto=mesto;
+    this.ulica=ulica;
+    this.cislodomu=cislodomu;
+    this.psc=psc;
+  }
+
+  public Uzivatel(String meno,
+                  String priezvisko,
+                  String email,
+                  String stat,
+                  String mesto,
+                  String ulica,
+                  Integer cislodomu,
+                  Integer psc){
+    this.meno=meno;
+    this.priezvisko=priezvisko;
+    this.email=email;
+    this.stat=stat;
+    this.mesto=mesto;
+    this.ulica=ulica;
+    this.cislodomu=cislodomu;
+    this.psc=psc;
+  }
+
 
   @Override
-  public String getId() {
+  public Integer getId() {
     return id;
   }
   @Override
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -98,21 +172,21 @@ public class Uzivatel implements UzivatelInterface {
 
 
   @Override
-  public String getCislodomu() {
+  public Integer getCislodomu() {
     return cislodomu;
   }
   @Override
-  public void setCislodomu(String cislodomu) {
+  public void setCislodomu(Integer cislodomu) {
     this.cislodomu = cislodomu;
   }
 
 
   @Override
-  public String getPsc() {
+  public Integer getPsc() {
     return psc;
   }
   @Override
-  public void setPsc(String psc) {
+  public void setPsc(Integer psc) {
     this.psc = psc;
   }
 

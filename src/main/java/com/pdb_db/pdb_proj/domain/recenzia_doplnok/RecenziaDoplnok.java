@@ -1,10 +1,21 @@
 package com.pdb_db.pdb_proj.domain.recenzia_doplnok;
 
+import javax.persistence.*;
 
-
-
+@Entity
+@Table
 public class RecenziaDoplnok implements RecenziaDoplnokInterface{
 
+  @Id
+  @SequenceGenerator(
+          name = "recenziaDoplnok_sequence",
+          sequenceName = "recenziaDoplnok_sequence",
+          allocationSize = 1
+  )
+  @GeneratedValue(
+          strategy = GenerationType.SEQUENCE,
+          generator = "recenziaDoplnok_sequence"
+  )
   private Integer id;
   private String nazov;
   private String popis;

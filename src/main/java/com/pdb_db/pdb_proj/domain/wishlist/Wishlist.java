@@ -1,22 +1,50 @@
 package com.pdb_db.pdb_proj.domain.wishlist;
 
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Wishlist implements WishlistInterface {
 
-  private String id;
+  @Id
+  @SequenceGenerator(
+          name = "wishlist_sequence",
+          sequenceName = "wishlist_sequence",
+          allocationSize = 1
+  )
+  @GeneratedValue(
+          strategy = GenerationType.SEQUENCE,
+          generator = "wishlist_sequence"
+  )
+  private Integer id;
   private String nazov;
-  private String uzivid;
+  private Integer uzivid;
 
 
   public Wishlist(){}
+  public Wishlist(Integer id,
+                  String nazov,
+                  Integer uzivid){
+    this.id=id;
+    this.nazov=nazov;
+    this.uzivid=uzivid;
+  }
+
+  public Wishlist(String nazov,
+                  Integer uzivid){
+    this.nazov=nazov;
+    this.uzivid=uzivid;
+  }
+
 
 
   @Override
-  public String getId() {
+  public Integer getId() {
     return id;
   }
   @Override
-  public void setId(String id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -32,11 +60,11 @@ public class Wishlist implements WishlistInterface {
 
 
   @Override
-  public String getUzivid() {
+  public Integer getUzivid() {
     return uzivid;
   }
   @Override
-  public void setUzivid(String uzivid) {
+  public void setUzivid(Integer uzivid) {
     this.uzivid = uzivid;
   }
 

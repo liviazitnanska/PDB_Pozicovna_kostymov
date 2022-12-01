@@ -2,9 +2,9 @@ package com.pdb_db.pdb_proj.domain.recenzia_kostym;
 
 public interface RecenziaKostymInterface {
 
-    String getId();
+    Integer getId();
 
-    void setId(String id);
+    void setId(Integer id);
 
 
     String getNazov();
@@ -17,24 +17,24 @@ public interface RecenziaKostymInterface {
     void setPopis(String popis);
 
 
-    String getSuhlas();
+    Integer getSuhlas();
 
-    void setSuhlas(String suhlas);
-
-
-    String getNesuhlas();
-
-    void setNesuhlas(String nesuhlas);
+    void setSuhlas(Integer suhlas);
 
 
-    String getUzivid();
+    Integer getNesuhlas();
 
-    void setUzivid(String uzivid);
+    void setNesuhlas(Integer nesuhlas);
 
 
-    String getKostymid();
+    Integer getUzivid();
 
-    void setKostymid(String kostymid);
+    void setUzivid(Integer uzivid);
+
+
+    Integer getKostymid();
+
+    void setKostymid(Integer kostymid);
 
 
 }
