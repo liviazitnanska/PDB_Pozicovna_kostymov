@@ -9,9 +9,9 @@ public interface RezervaciaRepositoryM extends MongoRepository<RezervaciaM,Integ
 {
     //List<RezervaciaM> findAllByVratenieContaining() TODO
 
-    List<RezervaciaM> findAllbyVratenie(Integer vratenie);
+   // List<RezervaciaM> findAllbyVratenie(Integer vratenie);
 
-    Optional<RezervaciaM> findRezervaciaMById(Integer id);
+    //Optional<RezervaciaM> findRezervaciaMById(Integer id);
 
 
 
