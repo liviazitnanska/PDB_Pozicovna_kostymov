@@ -22,8 +22,7 @@ public class DoplnokM
     private java.sql.Date vyroba;
     private List<Integer> recenzieDoplnkovID;
 
-    public DoplnokM(Integer id, String nazov, String popis, String material, String kategoria, Date vyroba, List<Integer> recenzieDoplnkovID) {
-        this.id = id;
+    public DoplnokM( String nazov, String popis, String material, String kategoria, Date vyroba, List<Integer> recenzieDoplnkovID) {
         this.nazov = nazov;
         this.popis = popis;
         this.material = material;

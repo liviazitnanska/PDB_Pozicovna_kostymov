@@ -15,4 +15,20 @@ public class DoplnokServiceM {
     {
         return doplnokRepositoryM.findAll();
     }
+
+    /*public DoplnokM getDoplnokMById(Integer id)
+    {
+        return doplnokRepositoryM.findDoplnokMById(id).get();
+    }*/
+
+    /*public List<DoplnokM> getAllDoplnokMByMaterial(String material)
+    {
+        return doplnokRepositoryM.findAllByMaterial(material);
+    }
+
+    public List<DoplnokM> getAllDoplnokMByKategoria(String kategoria)
+    {
+        return doplnokRepositoryM.findAllByKategoria(kategoria);
+    }*/
+
 }

@@ -23,8 +23,7 @@ public class KostymM
     private java.sql.Date vyroba;
     private List<Integer> recenzieKostymovId;
 
-    public KostymM(Integer id, String nazov, String popis, String material, String kategoria, Integer velkost, Date vyroba, List<Integer> recenzieKostymovId) {
-        this.id = id;
+    public KostymM( String nazov, String popis, String material, String kategoria, Integer velkost, Date vyroba, List<Integer> recenzieKostymovId) {
         this.nazov = nazov;
         this.popis = popis;
         this.material = material;

@@ -15,8 +15,8 @@ public class RecenziaDoplnokM
     private Integer suhlas;
     private Integer nesuhlas;
 
-    public RecenziaDoplnokM(Integer id, String nazov, String popis, Integer suhlas, Integer nesuhlas) {
-        this.id = id;
+    public RecenziaDoplnokM(String nazov, String popis, Integer suhlas, Integer nesuhlas)
+    {
         this.nazov = nazov;
         this.popis = popis;
         this.suhlas = suhlas;

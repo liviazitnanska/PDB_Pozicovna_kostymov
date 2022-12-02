@@ -1,7 +1,18 @@
 package com.pdb_db.pdb_proj.domainMongo.rezervaciaMongo;
 
-import com.pdb_db.pdb_proj.domainMongo.doplnokMongo.DoplnokM;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface RezervaciaRepositoryM extends MongoRepository<RezervaciaM,Integer> {
+import java.util.List;
+import java.util.Optional;
+
+public interface RezervaciaRepositoryM extends MongoRepository<RezervaciaM,Integer>
+{
+    //List<RezervaciaM> findAllByVratenieContaining() TODO
+
+    List<RezervaciaM> findAllbyVratenie(Integer vratenie);
+
+    Optional<RezervaciaM> findRezervaciaMById(Integer id);
+
+
+
 }

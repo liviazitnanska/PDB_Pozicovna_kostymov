@@ -73,7 +73,7 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
   @Override
   public String toString()
   {
-    return "DosplnokRezervacia{" +
+    return "DoplnokRezervacia{" +
             "id=" + id+
             "uzivid=" + uzivid+ '\'' +
             "kostymid=" + kostymid +'}';

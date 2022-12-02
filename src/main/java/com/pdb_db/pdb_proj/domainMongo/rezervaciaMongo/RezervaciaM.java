@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -13,14 +13,13 @@ public class RezervaciaM
 {
     @Id
     private Integer id;
-    private java.sql.Date casPozicania;
-    private java.sql.Date casVratenia;
+    private Date casPozicania;
+    private Date casVratenia;
     private Integer vratenie;
     private List<Integer> kostymyID;
     private List<Integer> doplnkyID;
 
-    public RezervaciaM(Integer id, Date casPozicania, Date casVratenia, Integer vratenie, List<Integer> kostymyID, List<Integer> doplnkyID) {
-        this.id = id;
+    public RezervaciaM(Date casPozicania, Date casVratenia, Integer vratenie, List<Integer> kostymyID, List<Integer> doplnkyID) {
         this.casPozicania = casPozicania;
         this.casVratenia = casVratenia;
         this.vratenie = vratenie;

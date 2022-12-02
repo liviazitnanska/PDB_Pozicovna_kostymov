@@ -14,4 +14,22 @@ public class RezervaciaServiceM
     {
         return rezervaciaRepositoryM.findAll();
     }
+/*
+    public List<RezervaciaM> getSkonceneRezervacieM()
+    {
+        return rezervaciaRepositoryM.findAllbyVratenie(1);
+    }
+
+    public List<RezervaciaM> getOtvoreneRezervacieM()
+    {
+        return rezervaciaRepositoryM.findAllbyVratenie(0);
+    }
+
+
+    public RezervaciaM getRezervaciaByID(Integer id)
+    {
+        return rezervaciaRepositoryM.findRezervaciaMById(id).get();
+    }*/
 }
+
+

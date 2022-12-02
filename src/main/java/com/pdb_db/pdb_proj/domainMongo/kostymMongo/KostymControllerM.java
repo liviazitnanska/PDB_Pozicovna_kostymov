@@ -1,8 +1,5 @@
 package com.pdb_db.pdb_proj.domainMongo.kostymMongo;
 
-import com.pdb_db.pdb_proj.domain.kostym.KostymService;
-import com.pdb_db.pdb_proj.domainMongo.doplnokMongo.DoplnokM;
-import com.pdb_db.pdb_proj.domainMongo.doplnokMongo.DoplnokServiceM;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,4 +19,6 @@ public class KostymControllerM
     {
         return kostymServiceM.getAllKostymM();
     }
+
+// KostymM fetchKostym(Integer kostymid){return kostymServiceM.getKostym(kostymid); }
 }

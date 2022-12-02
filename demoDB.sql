@@ -43,6 +43,6 @@ INSERT INTO Kostym_rezervacia(ID, UzivID,RezervaciaID,KostymID) VALUES (2,1,3,2)
 INSERT INTO Kostym_rezervacia(ID, UzivID,RezervaciaID,KostymID) VALUES (3,3,2,3);
 INSERT INTO Kostym_rezervacia(ID, UzivID,RezervaciaID,KostymID) VALUES (4,2,3,2);
 
-INSERT INTO Dosplnok_rezervacia(ID,UzivID,RezervaciaID, DoplnokID) VALUES (1,1,1,1);
-INSERT INTO Dosplnok_rezervacia(ID,UzivID,RezervaciaID, DoplnokID) VALUES (2,4,2,3);
-INSERT INTO Dosplnok_rezervacia(ID,UzivID,RezervaciaID, DoplnokID) VALUES (3,3,2,2);
+INSERT INTO Doplnok_rezervacia(ID,UzivID,RezervaciaID, DoplnokID) VALUES (1,1,1,1);
+INSERT INTO Doplnok_rezervacia(ID,UzivID,RezervaciaID, DoplnokID) VALUES (2,4,2,3);
+INSERT INTO Doplnok_rezervacia(ID,UzivID,RezervaciaID, DoplnokID) VALUES (3,3,2,2);
