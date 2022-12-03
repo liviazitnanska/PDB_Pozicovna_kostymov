@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Date;
 import java.util.List;
 
 @Configuration
@@ -16,14 +17,14 @@ public class RezervaciaConfig {
             RezervaciaRepository repository
     ){
         return args -> {
-            Rezervacia Rec4 = new Rezervacia(1,
-                    LocalDate.of(2020, Month.JANUARY, 15),
-                    LocalDate.of(2020, Month.JANUARY, 25),
+            Rezervacia Rec4 = new Rezervacia(
+                    new Date(System.currentTimeMillis()),
+                    new Date(System.currentTimeMillis()),
                     1,
                     1);
-            Rezervacia Rec5 = new Rezervacia(2,
-                    LocalDate.of(2020, Month.MARCH, 7),
-                    LocalDate.of(2020, Month.MARCH, 17),
+            Rezervacia Rec5 = new Rezervacia(
+                    new Date(System.currentTimeMillis()),
+                    new Date(System.currentTimeMillis()),
                     1,
                     2);
 

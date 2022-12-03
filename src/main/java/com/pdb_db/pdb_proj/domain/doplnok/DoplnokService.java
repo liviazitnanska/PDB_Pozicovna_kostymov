@@ -1,5 +1,6 @@
 package com.pdb_db.pdb_proj.domain.doplnok;
 
+import com.pdb_db.pdb_proj.domain.kostym.Kostym;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,23 @@ public class DoplnokService {
     {
         return doplnokRepository.findAll();
     }
+
+
+    public List<Doplnok> get_Doplnky_by_material(String material)
+    {
+        return  doplnokRepository.findAllByMaterial(material);
+    }
+
+    public Optional<Doplnok> getDoplnokById(Integer id)
+    {
+        return doplnokRepository.findById(id);
+    }
+
+    public Optional<Doplnok> getDoplnokByNazov(String nazov)
+    {
+        return doplnokRepository.findDoplnokByNazov(nazov);
+    }
+
 
     public void addNewDoplnok(Doplnok doplnok)
     {

@@ -14,7 +14,7 @@ public class DoplnokConfig {
     {
         return args -> {
             Doplnok palica =  new Doplnok
-                    (1,"Palica", "doplnok", "drevo", "muzske", new Date(System.currentTimeMillis())
+                    (1,"Palica", "doplnok", "plast", "muzske", new Date(System.currentTimeMillis())
                     );
             Doplnok kridla = new Doplnok (2,"Krídla", "doplnok", "paperie", "zenske", new Date(System.currentTimeMillis()));
 

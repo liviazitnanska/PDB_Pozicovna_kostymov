@@ -47,6 +47,15 @@ public class Doplnok implements DoplnokInterface {
     this.vyroba = vyroba;
   }
 
+  public Doplnok( String nazov, String popis, String material,String kategoria, java.sql.Date vyroba)
+  {
+    this.nazov = nazov;
+    this.popis = popis;
+    this.material = material;
+    this.kategoria = kategoria;
+    this.vyroba = vyroba;
+  }
+
 
   @Override
   public Integer getId() {

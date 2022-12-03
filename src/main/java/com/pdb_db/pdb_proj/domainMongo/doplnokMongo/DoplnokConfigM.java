@@ -8,10 +8,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Configuration
+@Configuration
 public class DoplnokConfigM
 {
-
     /*@Bean
     CommandLineRunner commandLineRunnerDoplnokM(DoplnokRepositoryM repository)
     {

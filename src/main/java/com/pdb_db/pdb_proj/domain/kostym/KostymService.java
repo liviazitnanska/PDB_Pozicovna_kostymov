@@ -34,6 +34,21 @@ public class KostymService {
         return optionalKostym.get();
     }
 
+    public Optional<Kostym> getKostymByNazov(String nazov)
+    {
+        Optional <Kostym> optionalKostym = kostymRepository.findKostymByNazov(nazov);
+        if (!optionalKostym.isPresent())
+        {
+            throw new IllegalStateException("This Costume does not exist");
+        }
+        return optionalKostym;
+    }
+
+    public List<Kostym> get_Kostymy_by_material(String material)
+    {
+        return  kostymRepository.findAllByMaterial(material);
+    }
+
     public void addNewKostym(Kostym kostym)
     {
         //System.out.println(kostym);

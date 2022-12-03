@@ -24,6 +24,14 @@ public class RecenziaDoplnok implements RecenziaDoplnokInterface{
   private Integer uzivid;
   private Integer doplnokid;
 
+  public RecenziaDoplnok(String nazov, String popis, Integer suhlas, Integer nesuhlas, Integer uzivid, Integer doplnokid) {
+    this.nazov = nazov;
+    this.popis = popis;
+    this.suhlas = suhlas;
+    this.nesuhlas = nesuhlas;
+    this.uzivid = uzivid;
+    this.doplnokid = doplnokid;
+  }
 
   public RecenziaDoplnok(){}
   public RecenziaDoplnok(Integer id,

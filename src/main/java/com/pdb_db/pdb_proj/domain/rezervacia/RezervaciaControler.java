@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,9 @@ public class RezervaciaControler {
     }
 
     @PostMapping
-    public void registerNewRezervacia(@RequestBody Rezervacia rezervacia){
+    public void registerNewRezervacia(@RequestBody Rezervacia rezervacia)
+    {
+
         rezervaciaService.addNewRezervacia(rezervacia);
     }
 
@@ -38,8 +41,8 @@ public class RezervaciaControler {
     public void updateRezervacia(
             @PathVariable("id") Integer id,
             //TODO post na cas nefunguje
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate casPozicania,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDate casVratenia,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date casPozicania,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date casVratenia,
             @RequestParam(required = false) Integer vratenie,
             @RequestParam(required = false) Integer uzivid
     ){

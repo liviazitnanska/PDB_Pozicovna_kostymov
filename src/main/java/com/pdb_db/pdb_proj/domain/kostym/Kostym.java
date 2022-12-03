@@ -38,6 +38,17 @@ public class Kostym implements KostymInterface {
     this.vyroba = vyroba;
   }
 
+  public Kostym( String nazov, String popis, String material,String kategoria,Integer velkost,java.sql.Date vyroba)
+  {
+    this.id = id;
+    this.nazov = nazov;
+    this.popis = popis;
+    this.material = material;
+    this.kategoria = kategoria;
+    this.velkost = velkost;
+    this.vyroba = vyroba;
+  }
+
   @Override
   public Integer getId() {
     return id;

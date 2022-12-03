@@ -1,6 +1,7 @@
 package com.pdb_db.pdb_proj.domain.rezervacia;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public interface RezervaciaInterface {
 
@@ -9,14 +10,14 @@ public interface RezervaciaInterface {
     void setId(Integer id);
 
 
-    LocalDate getCasPozicania();
+    Date getCasPozicania();
 
-    void setCasPozicania(LocalDate casPozicania);
+    void setCasPozicania(Date casPozicania);
 
 
-    LocalDate getCasVratenia();
+    Date getCasVratenia();
 
-    void setCasVratenia(LocalDate casVratenia);
+    void setCasVratenia(Date casVratenia);
 
 
     Integer getVratenie();

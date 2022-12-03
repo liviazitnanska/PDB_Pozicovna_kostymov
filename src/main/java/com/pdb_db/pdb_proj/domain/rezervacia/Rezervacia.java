@@ -3,6 +3,7 @@ package com.pdb_db.pdb_proj.domain.rezervacia;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table
@@ -19,16 +20,16 @@ public class Rezervacia implements RezervaciaInterface {
           generator = "rezervacia_sequence"
   )
   private Integer id;
-  private LocalDate casPozicania;
-  private LocalDate casVratenia;
+  private Date casPozicania;
+  private Date casVratenia;
   private Integer vratenie;
   private Integer uzivid;
 
 
   public Rezervacia(){}
   public Rezervacia(Integer id,
-                    LocalDate casPozicania,
-                    LocalDate casVratenia,
+                    Date casPozicania,
+                    Date casVratenia,
                     Integer vratenie,
                     Integer uzivid
                     ){
@@ -40,21 +41,8 @@ public class Rezervacia implements RezervaciaInterface {
   }
 
 
-
-  public Rezervacia(Integer id,
-                    LocalDate casPozicania,
-                    LocalDate casVratenia,
-                    Integer vratenie
-
-  ){
-    this.id=id;
-    this.casPozicania=casPozicania;
-    this.casVratenia=casVratenia;
-    this.vratenie=vratenie;
-  }
-
-  public Rezervacia(LocalDate casPozicania,
-                    LocalDate casVratenia,
+  public Rezervacia(Date casPozicania,
+                    Date casVratenia,
                     Integer vratenie,
                     Integer uzivid
   ){
@@ -75,21 +63,21 @@ public class Rezervacia implements RezervaciaInterface {
 
 
   @Override
-  public LocalDate getCasPozicania() {
+  public Date getCasPozicania() {
     return casPozicania;
   }
   @Override
-  public void setCasPozicania(LocalDate casPozicania) {
+  public void setCasPozicania(Date casPozicania) {
     this.casPozicania = casPozicania;
   }
 
 
   @Override
-  public LocalDate getCasVratenia() {
+  public Date getCasVratenia() {
     return casVratenia;
   }
   @Override
-  public void setCasVratenia(LocalDate casVratenia) {
+  public void setCasVratenia(Date casVratenia) {
     this.casVratenia = casVratenia;
   }
 

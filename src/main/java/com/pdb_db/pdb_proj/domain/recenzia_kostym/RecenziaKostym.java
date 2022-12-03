@@ -24,6 +24,14 @@ public class RecenziaKostym implements RecenziaKostymInterface {
   private Integer uzivid;
   private Integer kostymid;
 
+  public RecenziaKostym(String nazov, String popis, Integer suhlas, Integer nesuhlas, Integer uzivid, Integer kostymid) {
+    this.nazov = nazov;
+    this.popis = popis;
+    this.suhlas = suhlas;
+    this.nesuhlas = nesuhlas;
+    this.uzivid = uzivid;
+    this.kostymid = kostymid;
+  }
 
   public RecenziaKostym(){}
   public RecenziaKostym(Integer id,

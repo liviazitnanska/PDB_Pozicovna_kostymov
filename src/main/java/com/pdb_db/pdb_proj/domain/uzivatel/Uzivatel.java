@@ -1,6 +1,8 @@
 package com.pdb_db.pdb_proj.domain.uzivatel;
 
 
+import lombok.Builder;
+
 import javax.persistence.*;
 
 @Entity

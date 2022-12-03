@@ -1,11 +1,14 @@
 package com.pdb_db.pdb_proj.domain.rezervacia;
 
+import com.pdb_db.pdb_proj.domain.uzivatel.Uzivatel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RezervaciaService {
@@ -25,7 +28,25 @@ public class RezervaciaService {
 
     //Operacia: Vytvorenie rezervacie
     public void addNewRezervacia(Rezervacia rezervacia) {
+
+        //Check user
+        Optional<Uzivatel> uzivatelOptional = rezervaciaRepository.findUzivatelById(rezervacia.getUzivid());
+        if(!uzivatelOptional.isPresent())
+        {
+            throw new IllegalStateException("Can not create reservation to non existent user");
+        }
+
         rezervaciaRepository.save(rezervacia);
+    }
+
+    public List<Rezervacia> getAllOngoing()
+    {
+        return rezervaciaRepository.findAllByVratenie(0);
+    }
+
+    public List<Rezervacia> getAllEnded()
+    {
+        return rezervaciaRepository.findAllByVratenie(1);
     }
 
     //Operacia: Zrusenie rezervacie
@@ -38,7 +59,7 @@ public class RezervaciaService {
     }
 
     @Transactional
-    public void updateRezervacia(Integer id, LocalDate casPozicania, LocalDate casVratenia, Integer vratenie, Integer uzivid) {
+    public void updateRezervacia(Integer id, Date casPozicania, Date casVratenia, Integer vratenie, Integer uzivid) {
         Rezervacia rR = rezervaciaRepository.findById(id
         ).orElseThrow(() ->
                 new IllegalStateException("Unsuccessful UPDATE request. Record with id: "+id+" is NOT exists!"));

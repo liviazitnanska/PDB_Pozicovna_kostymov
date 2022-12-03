@@ -14,10 +14,10 @@ import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
+//@Configuration
 public class KafkaConsumerConfig
 {
-    @Value("${spring.kafka.bootstrap-servers}")
+    /*@Value("${spring.kafka.bootstrap-servers}")
     private String bootstrapServers;
 
 
@@ -43,5 +43,5 @@ public class KafkaConsumerConfig
         ConcurrentKafkaListenerContainerFactory<String,String> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
         return factory;
-    }
+    }*/
 }
