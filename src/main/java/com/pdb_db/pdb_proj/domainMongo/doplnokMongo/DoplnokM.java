@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,17 +19,21 @@ public class DoplnokM
     private String popis;
     private String material;
     private String kategoria;
-    private java.sql.Date vyroba;
-    private List<Integer> recenzieDoplnkovID;
+    private java.util.Date vyroba;
+    private ArrayList<Integer> rezervaciaIdList;
 
-    public DoplnokM( Integer id, String nazov, String popis, String material, String kategoria, Date vyroba, List<Integer> recenzieDoplnkovID) {
+    public DoplnokM(){}
+    public DoplnokM(Integer id){
+        this.id = id;
+    }
+    public DoplnokM(Integer id, String nazov, String popis, String material, String kategoria, java.util.Date vyroba, ArrayList<Integer> rezervaciaIdList) {
         this.id = id;
         this.nazov = nazov;
         this.popis = popis;
         this.material = material;
         this.kategoria = kategoria;
         this.vyroba = vyroba;
-        this.recenzieDoplnkovID = recenzieDoplnkovID;
+        this.rezervaciaIdList = rezervaciaIdList;
     }
 
     public Integer getId() {
@@ -72,19 +76,31 @@ public class DoplnokM
         this.kategoria = kategoria;
     }
 
-    public Date getVyroba() {
+    public  java.util.Date getVyroba() {
         return vyroba;
     }
 
-    public void setVyroba(Date vyroba) {
+    public void setVyroba( java.util.Date vyroba) {
         this.vyroba = vyroba;
     }
 
-    public List<Integer> getRecenzieDoplnkovID() {
-        return recenzieDoplnkovID;
+    public ArrayList<Integer> getRecenzieDoplnkovID() {
+        return rezervaciaIdList;
     }
 
-    public void setRecenzieDoplnkovID(List<Integer> recenzieDoplnkovID) {
-        this.recenzieDoplnkovID = recenzieDoplnkovID;
+    public void setRecenzieDoplnkovID(ArrayList<Integer> rezervaciaIdList) {
+        this.rezervaciaIdList = rezervaciaIdList;
+    }
+
+    public void setNewIdToRezervaciaIdList(Integer id){
+        this.rezervaciaIdList.add(id);
+    }
+
+    public void deleteIdFromRezervaciaIdList(Integer id){
+        this.rezervaciaIdList.remove(id);
+    }
+
+    public boolean ifExistsIdInRezervaciaIdList(Integer id){
+        return this.rezervaciaIdList.contains(id);
     }
 }

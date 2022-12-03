@@ -24,11 +24,15 @@ public class UzivatelM
     private String ulica;
     private Integer cislodomu;
     private Integer psc;
-    private List<String> wishlistyNazov;
-    private List<Integer> recenzieDoplnkov;
-    private List<Integer> recenzieKostymov;
 
-    public UzivatelM(String meno, String priezvisko, String email, String telefon, String stat, String mesto, String ulica, Integer cislodomu, Integer psc, List<String> wishlistyNazov, List<Integer> recenzieDoplnkov, List<Integer> recenzieKostymov) {
+//  List<String> wishlistyNazov, List<Integer> recenzieDoplnkov, List<Integer> recenzieKostymov
+
+    public UzivatelM(){};
+    public UzivatelM(Integer id){
+        this.id=id;
+    };
+    public UzivatelM(Integer id, String meno, String priezvisko, String email, String telefon, String stat, String mesto, String ulica, Integer cislodomu, Integer psc) {
+        this.id=id;
         this.meno = meno;
         this.priezvisko = priezvisko;
         this.email = email;
@@ -38,9 +42,6 @@ public class UzivatelM
         this.ulica = ulica;
         this.cislodomu = cislodomu;
         this.psc = psc;
-        this.wishlistyNazov = wishlistyNazov;
-        this.recenzieDoplnkov = recenzieDoplnkov;
-        this.recenzieKostymov = recenzieKostymov;
     }
 
     public Integer getId() {
@@ -123,27 +124,4 @@ public class UzivatelM
         this.psc = psc;
     }
 
-    public List<String> getWishlistyNazov() {
-        return wishlistyNazov;
-    }
-
-    public void setWishlistyNazov(List<String> wishlistyNazov) {
-        this.wishlistyNazov = wishlistyNazov;
-    }
-
-    public List<Integer> getRecenzieDoplnkov() {
-        return recenzieDoplnkov;
-    }
-
-    public void setRecenzieDoplnkov(List<Integer> recenzieDoplnkov) {
-        this.recenzieDoplnkov = recenzieDoplnkov;
-    }
-
-    public List<Integer> getRecenzieKostymov() {
-        return recenzieKostymov;
-    }
-
-    public void setRecenzieKostymov(List<Integer> recenzieKostymov) {
-        this.recenzieKostymov = recenzieKostymov;
-    }
 }

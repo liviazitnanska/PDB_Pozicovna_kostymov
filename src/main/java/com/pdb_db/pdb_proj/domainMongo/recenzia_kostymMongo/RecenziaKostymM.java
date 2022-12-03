@@ -1,8 +1,11 @@
 package com.pdb_db.pdb_proj.domainMongo.recenzia_kostymMongo;
 
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.persistence.Transient;
 
 @Data
 @Document
@@ -14,12 +17,23 @@ public class RecenziaKostymM
     private String popis;
     private Integer suhlas;
     private Integer nesuhlas;
+    private Integer uzivid;
+    private Integer kostymid;
 
-    public RecenziaKostymM(String nazov, String popis, Integer suhlas, Integer nesuhlas) {
+    public RecenziaKostymM(){};
+    public RecenziaKostymM(Integer id){
+        this.id = id;
+    };
+
+    public RecenziaKostymM(Integer id, String nazov, String popis, Integer suhlas, Integer nesuhlas, Integer uzivid,
+                           Integer kostymid) {
+        this.id = id;
         this.nazov = nazov;
         this.popis = popis;
         this.suhlas = suhlas;
         this.nesuhlas = nesuhlas;
+        this.uzivid = uzivid;
+        this.kostymid = kostymid;
     }
 
     public Integer getId() {
@@ -61,4 +75,22 @@ public class RecenziaKostymM
     public void setNesuhlas(Integer nesuhlas) {
         this.nesuhlas = nesuhlas;
     }
+
+
+    public Integer getUzivid() {
+        return uzivid;
+    }
+    public void setUzivid(Integer uzivid) {
+        this.uzivid = uzivid;
+    }
+
+
+
+    public Integer getKostymid() {
+        return kostymid;
+    }
+    public void setKostymid(Integer kostymid) {
+        this.kostymid = kostymid;
+    }
+
 }
