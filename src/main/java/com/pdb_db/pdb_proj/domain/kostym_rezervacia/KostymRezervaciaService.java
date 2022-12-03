@@ -29,6 +29,16 @@ public class KostymRezervaciaService {
         return kostymRezervaciaRepository.findAll();
     }
 
+    public List<KostymRezervacia> getAllOngoing()
+    {
+        return kostymRezervaciaRepository.findAllByVratenie(0);
+    }
+
+    public List<KostymRezervacia> getAllEnded()
+    {
+        return kostymRezervaciaRepository.findAllByVratenie(1);
+    }
+
 
     public void addNewKostymRezervacia(KostymRezervacia kostymRezervacia)
     {

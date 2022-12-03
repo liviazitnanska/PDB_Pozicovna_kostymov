@@ -2,6 +2,7 @@ package com.pdb_db.pdb_proj.domain.doplnok_rezervacia;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pdb_db.pdb_proj.domain.doplnok.Doplnok;
+import com.pdb_db.pdb_proj.domain.kostym_rezervacia.KostymRezervacia;
 import com.pdb_db.pdb_proj.domain.uzivatel.UzivatelRepository;
 import com.pdb_db.pdb_proj.utilities.rest_operationType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,16 @@ public class DoplnokRezervaciaService
     public List<DoplnokRezervacia> getDoplnokRezervacie()
     {
         return doplnokRezervaciaRepository.findAll();
+    }
+
+    public List<DoplnokRezervacia> getAllOngoing()
+    {
+        return doplnokRezervaciaRepository.findAllByVratenie(0);
+    }
+
+    public List<DoplnokRezervacia> getAllEnded()
+    {
+        return doplnokRezervaciaRepository.findAllByVratenie(1);
     }
 
 

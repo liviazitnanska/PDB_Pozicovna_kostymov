@@ -1,9 +1,7 @@
 package com.pdb_db.pdb_proj.tests.recenzia;
 
-import com.pdb_db.pdb_proj.domain.doplnok.DoplnokRepository;
 import com.pdb_db.pdb_proj.domain.recenzia_doplnok.RecenziaDoplnok;
 import com.pdb_db.pdb_proj.domain.recenzia_doplnok.RecenziaDoplnokRepository;
-import com.pdb_db.pdb_proj.domain.rezervacia.Rezervacia;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -67,6 +67,7 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
     this.vratenie = vratenie;
   }
 
+
   @Override
   public Integer getId() {
     return id;

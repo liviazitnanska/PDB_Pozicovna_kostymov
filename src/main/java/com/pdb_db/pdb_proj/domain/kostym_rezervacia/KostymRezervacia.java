@@ -3,6 +3,7 @@ package com.pdb_db.pdb_proj.domain.kostym_rezervacia;
 import com.pdb_db.pdb_proj.utilities.rest_operationType;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table
@@ -50,6 +51,14 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
     this.vratenie = vratenie;
   }
 
+  public KostymRezervacia(Integer uzivid, Integer kostymid, Integer rezervaciaid, Date casPozicania, Date casVratenia, Integer vratenie) {
+    this.uzivid = uzivid;
+    this.kostymid = kostymid;
+    this.rezervaciaid = rezervaciaid;
+    this.casPozicania = casPozicania;
+    this.casVratenia = casVratenia;
+    this.vratenie = vratenie;
+  }
 
   @Override
   public Integer getId() {
