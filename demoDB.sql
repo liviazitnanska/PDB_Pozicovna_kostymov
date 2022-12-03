@@ -31,12 +31,13 @@ INSERT INTO Recenzia_doplnok (ID ,Nazov, Popis,Suhlas,Nesuhlas,UzivID,DoplnokID)
 INSERT INTO Recenzia_doplnok (ID ,Nazov, Popis,Suhlas,Nesuhlas,UzivID,DoplnokID) VALUES (2,'Rec2','Meh',2,4,4,3);
 INSERT INTO Recenzia_doplnok (ID ,Nazov, Popis,Suhlas,Nesuhlas,UzivID,DoplnokID) VALUES (3,'Rec3','Fajne',4,1,3,2);
 
-INSERT INTO Wishlist (ID, Nazov,uzivID) VALUES (1,'Vianoce',2);
-INSERT INTO Wishlist (ID, Nazov,uzivID) VALUES (2,'Velka_noc',2);
-INSERT INTO Wishlist (ID, Nazov,uzivID) VALUES (3,'Halloween',2);
-INSERT INTO Wishlist (ID, Nazov,uzivID) VALUES (4,'W1',1);
-INSERT INTO Wishlist (ID, Nazov,uzivID) VALUES (5,'W2',4);
-INSERT INTO Wishlist (ID, Nazov,uzivID) VALUES (6,'Chcem',4);
+INSERT INTO WishlistKostym (ID, Nazov,uzivID) VALUES (1,'Vianoce',2,1);
+INSERT INTO WishlistKostym (ID, Nazov,uzivID) VALUES (2,'Velka_noc',2,1);
+INSERT INTO WishlistKostym (ID, Nazov,uzivID) VALUES (3,'Halloween',2,1);
+INSERT INTO WishlistDoplnok (ID, Nazov,uzivID) VALUES (4,'W1',1,1);
+INSERT INTO WishlistDoplnok (ID, Nazov,uzivID) VALUES (5,'W2',4,2);
+INSERT INTO WishlistDoplnok (ID, Nazov,uzivID) VALUES (6,'Chcem',4,2);
+
 
 INSERT INTO Kostym_rezervacia(ID, UzivID,RezervaciaID,KostymID) VALUES (1,1,2,1);
 INSERT INTO Kostym_rezervacia(ID, UzivID,RezervaciaID,KostymID) VALUES (2,1,3,2);

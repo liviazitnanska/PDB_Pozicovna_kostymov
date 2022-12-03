@@ -1,6 +1,7 @@
-package com.pdb_db.pdb_proj.domain.wishlist;
+package com.pdb_db.pdb_proj.domain.wishlist_doplnok;
 
-public interface WishlistInterface {
+public interface WishlistDoplnokInterface
+{
 
     Integer getId();
 
@@ -15,4 +16,8 @@ public interface WishlistInterface {
     Integer getUzivid();
 
     void setUzivid(Integer uzivid);
+
+    Integer getDoplnokid();
+
+    void setDoplnokmid(Integer kostymid);
 }

@@ -1,41 +1,37 @@
-package com.pdb_db.pdb_proj.domain.wishlist;
+package com.pdb_db.pdb_proj.domain.wishlist_kostym;
 
 
 import javax.persistence.*;
 
 @Entity
 @Table
-public class Wishlist implements WishlistInterface {
+public class WishlistKostym implements WishlistKostymInterface {
 
   @Id
   @SequenceGenerator(
-          name = "wishlist_sequence",
-          sequenceName = "wishlist_sequence",
+          name = "wishlistkostym_sequence",
+          sequenceName = "wishlistkostym_sequence",
           allocationSize = 1
   )
   @GeneratedValue(
           strategy = GenerationType.SEQUENCE,
-          generator = "wishlist_sequence"
+          generator = "wishlistkostym_sequence"
   )
   private Integer id;
   private String nazov;
   private Integer uzivid;
 
+  private Integer kostymid;
 
-  public Wishlist(){}
-  public Wishlist(Integer id,
-                  String nazov,
-                  Integer uzivid){
-    this.id=id;
+
+  public WishlistKostym(){}
+  public WishlistKostym(String nazov,Integer uzivid, Integer kostymid)
+  {
+    this.kostymid = kostymid;
     this.nazov=nazov;
     this.uzivid=uzivid;
   }
 
-  public Wishlist(String nazov,
-                  Integer uzivid){
-    this.nazov=nazov;
-    this.uzivid=uzivid;
-  }
 
 
 
@@ -66,6 +62,17 @@ public class Wishlist implements WishlistInterface {
   @Override
   public void setUzivid(Integer uzivid) {
     this.uzivid = uzivid;
+  }
+
+  @Override
+  public Integer getKostymid() {
+    return kostymid;
+  }
+
+  @Override
+  public void setKostymid(Integer kostymid)
+  {
+      this.kostymid=kostymid;
   }
 
 }
