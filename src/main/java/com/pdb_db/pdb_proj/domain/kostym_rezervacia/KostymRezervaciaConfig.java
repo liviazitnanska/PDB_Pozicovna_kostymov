@@ -16,8 +16,21 @@ public class KostymRezervaciaConfig {
     CommandLineRunner commandLineRunnerKostymRezervacia(KostymRezervaciaRepository repository)
     {
         return args -> {
-            KostymRezervacia jedna =  new KostymRezervacia(1,1,1,1);
-            KostymRezervacia dva =  new KostymRezervacia(2,2,2,2);
+            KostymRezervacia jedna =  new KostymRezervacia(1,
+                    1,
+                    1,
+                    1,
+                    new java.util.Date(118,5,1),
+                    new java.util.Date(118,7,8),
+                    1);
+            KostymRezervacia dva =  new KostymRezervacia(2,
+                    2,
+                    2,
+                    2,
+                    new java.util.Date(119,6,5),
+                    new java.util.Date(119,9,15),
+                    1
+            );
             repository.saveAll(
                     List.of(jedna,dva)
             );

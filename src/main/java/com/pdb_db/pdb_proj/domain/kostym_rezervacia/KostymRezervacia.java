@@ -33,19 +33,21 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
     this.id = id;
   }
 
-  public KostymRezervacia(Integer uzivid, Integer kostymid, Integer rezervaciaid)
-  {
-    this.uzivid = uzivid;
-    this.kostymid = kostymid;
-    this.rezervaciaid = rezervaciaid;
-  }
-
-  public KostymRezervacia(Integer id, Integer uzivid, Integer kostymid, Integer rezervaciaid)
+  public KostymRezervacia(Integer id,
+                          Integer uzivid,
+                          Integer kostymid,
+                          Integer rezervaciaid,
+                          java.util.Date casPozicania,
+                          java.util.Date casVratenia,
+                          Integer vratenie)
   {
     this.id = id;
     this.uzivid = uzivid;
     this.kostymid = kostymid;
     this.rezervaciaid = rezervaciaid;
+    this.casPozicania = casPozicania;
+    this.casVratenia = casVratenia;
+    this.vratenie = vratenie;
   }
 
 
