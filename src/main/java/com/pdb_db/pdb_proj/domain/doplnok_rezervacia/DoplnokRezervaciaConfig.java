@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Calendar;
 import java.util.List;
 
 @Configuration
@@ -13,8 +14,20 @@ public class DoplnokRezervaciaConfig {
     CommandLineRunner commandLineRunnerDoplnokRezervacia(DoplnokRezervaciaRepository repository)
     {
         return args -> {
-            DoplnokRezervacia jedna = new DoplnokRezervacia(1,1,1);
-            DoplnokRezervacia dva = new DoplnokRezervacia(2,2,1);
+            DoplnokRezervacia jedna = new DoplnokRezervacia(1,
+                    1,
+                    1,
+                    1,
+                    new java.util.Date(120, Calendar.JUNE,6),
+                    new java.util.Date(120, Calendar.JULY,15),
+                    1);
+            DoplnokRezervacia dva = new DoplnokRezervacia(2,
+                    2,
+                    2,
+                    2,
+                    new java.util.Date(120,10,7),
+                    new java.util.Date(120,11,20),
+                    1);
             repository.saveAll(
                     List.of(jedna,dva)
             );

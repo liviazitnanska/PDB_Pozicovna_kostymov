@@ -27,8 +27,8 @@ public interface DoplnokInterface {
     void setKategoria(String kategoria);
 
 
-    java.sql.Date getVyroba();
+    java.util.Date getVyroba();
 
-    void setVyroba(java.sql.Date vyroba);
+    void setVyroba(java.util.Date vyroba);
 
 }

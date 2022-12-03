@@ -1,7 +1,11 @@
 package com.pdb_db.pdb_proj.domain.kostym;
 
 
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
+
 import javax.persistence.*;
+
+
 @Entity
 @Table
 public class Kostym implements KostymInterface {
@@ -22,12 +26,16 @@ public class Kostym implements KostymInterface {
   private String material;
   private String kategoria;
   private Integer velkost;
-  private java.sql.Date vyroba;
-
+  private java.util.Date vyroba;
+  @Transient
+  private rest_operationType rest_operation;
 
   public Kostym(){}
+  public Kostym(Integer id){
+    this.id = id;
+  }
 
-  public Kostym( Integer id, String nazov, String popis, String material,String kategoria,Integer velkost,java.sql.Date vyroba)
+  public Kostym( Integer id, String nazov, String popis, String material,String kategoria,Integer velkost, java.util.Date  vyroba)
   {
     this.id = id;
     this.nazov = nazov;
@@ -110,11 +118,11 @@ public class Kostym implements KostymInterface {
 
 
   @Override
-  public java.sql.Date getVyroba() {
+  public  java.util.Date  getVyroba() {
     return vyroba;
   }
   @Override
-  public void setVyroba(java.sql.Date vyroba) {
+  public void setVyroba( java.util.Date  vyroba) {
     this.vyroba = vyroba;
   }
 
@@ -130,4 +138,7 @@ public class Kostym implements KostymInterface {
             "kategoria=" + kategoria +
             "vyroba=" + vyroba +'}';
   }
+
+  public rest_operationType getOperation(){ return rest_operation; }
+  public void setOperation(rest_operationType rest_operation){ this.rest_operation = rest_operation; }
 }

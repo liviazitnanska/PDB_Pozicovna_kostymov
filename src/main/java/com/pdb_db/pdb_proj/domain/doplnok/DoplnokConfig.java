@@ -3,7 +3,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.sql.Date;
 import java.util.List;
 
 @Configuration
@@ -14,9 +13,9 @@ public class DoplnokConfig {
     {
         return args -> {
             Doplnok palica =  new Doplnok
-                    (1,"Palica", "doplnok", "plast", "muzske", new Date(System.currentTimeMillis())
+                    (1,"Palica", "doplnok", "drevo", "muzske", new  java.util.Date(System.currentTimeMillis())
                     );
-            Doplnok kridla = new Doplnok (2,"Krídla", "doplnok", "paperie", "zenske", new Date(System.currentTimeMillis()));
+            Doplnok kridla = new Doplnok (2,"Krídla", "doplnok", "paperie", "zenske", new  java.sql.Date(System.currentTimeMillis()));
 
             repository.saveAll(
                     List.of(palica,kridla)

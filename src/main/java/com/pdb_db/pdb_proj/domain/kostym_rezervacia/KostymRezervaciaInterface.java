@@ -20,4 +20,16 @@ public interface KostymRezervaciaInterface {
 
     void setRezervaciaid(Integer rezervaciaid);
 
+
+    java.util.Date getCasPozicania();
+
+    void setCasPozicania(java.util.Date casPozicania);
+
+    java.util.Date getCasVratenia();
+
+    void setCasVratenia(java.util.Date casVratenia);
+
+    Integer getVratenie();
+
+    void setVratenie(Integer vratenie);
 }

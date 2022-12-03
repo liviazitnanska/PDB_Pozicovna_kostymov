@@ -1,9 +1,13 @@
 package com.pdb_db.pdb_proj.domain.recenzia_doplnok;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pdb_db.pdb_proj.domain.uzivatel.Uzivatel;
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
 import com.pdb_db.pdb_proj.domain.doplnok.Doplnok;
 import com.pdb_db.pdb_proj.domain.uzivatel.Uzivatel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -12,6 +16,8 @@ import java.util.Optional;
 
 @Service
 public class RecenziaDoplnokService {
+
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private final RecenziaDoplnokRepository recenziaDoplnokRepository;
 
@@ -41,7 +47,12 @@ public class RecenziaDoplnokService {
         {
             throw new IllegalStateException("Can not create costume reservation for non existent costume");
         }
+
+        // Oracle
         recenziaDoplnokRepository.save(recenziaDoplnok);
+        // Kafka -> MongoDB
+        recenziaDoplnok.setOperation(rest_operationType.POST);
+        this.kafka_sendMessage(recenziaDoplnok);
     }
 
     public void deleteRecenziaDoplnok(Integer id) {
@@ -49,7 +60,13 @@ public class RecenziaDoplnokService {
         if (!exists){
             throw new IllegalStateException("Unsuccessful DELETE request. Record with id: "+id+" is NOT exists!");
         }
+
+        // Oracle
         recenziaDoplnokRepository.deleteById(id);
+        // Kafka -> MongoDB
+        RecenziaDoplnok recenziaDoplnok = new RecenziaDoplnok(id);
+        recenziaDoplnok.setOperation(rest_operationType.DELETE);
+        this.kafka_sendMessage(recenziaDoplnok);
     }
 
     @Transactional
@@ -77,5 +94,23 @@ public class RecenziaDoplnokService {
         if (doplnokid != null){
             rdR.setDoplnokid(doplnokid);
         }
+
+        // Kafka -> MongoDB
+        rdR.setOperation(rest_operationType.PUT);
+        this.kafka_sendMessage(rdR);
+    }
+
+    @Autowired
+    private KafkaTemplate<Long, String> kafkaTemplate;
+
+    public void kafka_sendMessage(RecenziaDoplnok recenziaDoplnok) {
+        try {
+            String str_recenziaDoplnok = OBJECT_MAPPER.writeValueAsString(recenziaDoplnok);
+            //SOT = Source of truth
+            kafkaTemplate.send("recenziaDoplnokService_SOT_event", str_recenziaDoplnok);
+        } catch (Exception e){
+            System.out.println("Custom exception error [KafkaSender]: " + e.getMessage());
+        }
+
     }
 }

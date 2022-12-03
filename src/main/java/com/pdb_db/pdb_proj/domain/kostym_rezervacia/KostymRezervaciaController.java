@@ -1,10 +1,7 @@
 package com.pdb_db.pdb_proj.domain.kostym_rezervacia;
 
-import com.pdb_db.pdb_proj.domain.doplnok.DoplnokService;
-import com.pdb_db.pdb_proj.domain.kostym.Kostym;
-import com.pdb_db.pdb_proj.domain.rezervacia.Rezervacia;
-import com.pdb_db.pdb_proj.dto.DTOKostymRezervacia;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -27,21 +24,9 @@ public class KostymRezervaciaController
         return kostymRezervaciaService.getKostymRezervacie();
     }
 
-    /*@PostMapping
-    public void registerNewKostymRezervacia(@RequestBody KostymRezervacia kostymRezervacia)
-    {
-        kostymRezervaciaService.addNewKostymRezervacia(kostymRezervacia);
-    }*/
     @PostMapping
-    public void registerNewKostymRezervacia
-    (
-            @RequestBody DTOKostymRezervacia dtoKostymRezervacia
-            )
+    public void registerNewKostymRezervacia(@RequestBody KostymRezervacia kostymRezervacia )
     {
-        Rezervacia rezervacia = new Rezervacia(dtoKostymRezervacia.getCasPozicania(),dtoKostymRezervacia.getCasVratenia(),dtoKostymRezervacia.getVratenie(),dtoKostymRezervacia.getUzivid());
-        kostymRezervaciaService.addNewRezervacia(rezervacia);
-
-        KostymRezervacia kostymRezervacia = new KostymRezervacia(dtoKostymRezervacia.getUzivid(),dtoKostymRezervacia.getKostymid(),rezervacia.getId());
         kostymRezervaciaService.addNewKostymRezervacia(kostymRezervacia);
     }
 
@@ -55,8 +40,11 @@ public class KostymRezervaciaController
     public void updateKostymRezervacia(
             @PathVariable("kostymRezervaciaId") Integer kostymRezervaciaId,
             @RequestParam(required = false) Integer uzivid,
-            @RequestParam(required = false)Integer kostymid)
+            @RequestParam(required = false)Integer kostymid,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) java.util.Date casPozicania,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) java.util.Date casVratenia,
+            @RequestParam(required = false) Integer vratenie)
     {
-        kostymRezervaciaService.updateKostymRezervacia(kostymRezervaciaId,uzivid,kostymid);
+        kostymRezervaciaService.updateKostymRezervacia(kostymRezervaciaId,uzivid,kostymid, casPozicania, casVratenia, vratenie);
     }
 }

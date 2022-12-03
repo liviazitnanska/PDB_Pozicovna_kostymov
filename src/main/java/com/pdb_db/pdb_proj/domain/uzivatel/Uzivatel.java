@@ -2,7 +2,7 @@ package com.pdb_db.pdb_proj.domain.uzivatel;
 
 
 import lombok.Builder;
-
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
 import javax.persistence.*;
 
 @Entity
@@ -30,8 +30,15 @@ public class Uzivatel implements UzivatelInterface {
   private Integer cislodomu;
   private Integer psc;
 
+  // CRUD operation
+  @Transient
+  private rest_operationType rest_operation;
+
 
   public Uzivatel(){}
+  public Uzivatel(Integer id){
+    this.id=id;
+  }
   public Uzivatel(Integer id,
                   String meno,
                   String priezvisko,
@@ -191,5 +198,8 @@ public class Uzivatel implements UzivatelInterface {
   public void setPsc(Integer psc) {
     this.psc = psc;
   }
+
+  public rest_operationType getOperation(){ return rest_operation; }
+  public void setOperation(rest_operationType rest_operation){ this.rest_operation = rest_operation; }
 
 }

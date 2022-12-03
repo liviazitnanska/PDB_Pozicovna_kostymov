@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.sql.Date;
+
 import java.util.List;
 
 @Configuration
@@ -16,8 +16,8 @@ public class KostymRezervaciaConfig {
     CommandLineRunner commandLineRunnerKostymRezervacia(KostymRezervaciaRepository repository)
     {
         return args -> {
-            KostymRezervacia jedna =  new KostymRezervacia(1,2,3);
-            KostymRezervacia dva =  new KostymRezervacia(2,2,1);
+            KostymRezervacia jedna =  new KostymRezervacia(1,1,1,1);
+            KostymRezervacia dva =  new KostymRezervacia(2,2,2,2);
             repository.saveAll(
                     List.of(jedna,dva)
             );

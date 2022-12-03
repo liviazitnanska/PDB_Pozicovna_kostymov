@@ -1,5 +1,7 @@
 package com.pdb_db.pdb_proj.domain.kostym_rezervacia;
 
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,15 +22,32 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
   private Integer kostymid;
   private Integer rezervaciaid;
 
-
+  private java.util.Date casPozicania;
+  private java.util.Date casVratenia;
+  private Integer vratenie;
+  @Transient
+  private rest_operationType rest_operation;
 
   public KostymRezervacia(){}
+  public KostymRezervacia(Integer id){
+    this.id = id;
+  }
 
-  public KostymRezervacia(Integer uzivid, Integer kostymid, Integer rezervaciaid) {
+  public KostymRezervacia(Integer uzivid, Integer kostymid, Integer rezervaciaid)
+  {
     this.uzivid = uzivid;
     this.kostymid = kostymid;
     this.rezervaciaid = rezervaciaid;
   }
+
+  public KostymRezervacia(Integer id, Integer uzivid, Integer kostymid, Integer rezervaciaid)
+  {
+    this.id = id;
+    this.uzivid = uzivid;
+    this.kostymid = kostymid;
+    this.rezervaciaid = rezervaciaid;
+  }
+
 
   @Override
   public Integer getId() {
@@ -59,16 +78,8 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
     this.kostymid = kostymid;
   }
 
-  @Override
-  public Integer getRezervaciaid() {
-    return rezervaciaid;
-  }
-
-  @Override
-  public void setRezervaciaid(Integer rezervaciaid) {
-    this.rezervaciaid = rezervaciaid;
-
-  }
+  public Integer getRezervaciaid() { return rezervaciaid; }
+  public void setRezervaciaid(Integer rezervaciaid) { this.rezervaciaid = rezervaciaid; }
 
   @Override
   public String toString()
@@ -77,6 +88,37 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
             "id=" + id+
             "uzivid=" + uzivid+ '\'' +
             "kostymid=" + kostymid +'}';
+  }
+  public rest_operationType getOperation(){ return rest_operation; }
+  public void setOperation(rest_operationType rest_operation){ this.rest_operation = rest_operation; }
+
+  @Override
+  public java.util.Date getCasPozicania() {
+    return casPozicania;
+  }
+  @Override
+  public void setCasPozicania(java.util.Date casPozicania) {
+    this.casPozicania = casPozicania;
+  }
+
+
+  @Override
+  public java.util.Date getCasVratenia() {
+    return casVratenia;
+  }
+  @Override
+  public void setCasVratenia(java.util.Date casVratenia) {
+    this.casVratenia = casVratenia;
+  }
+
+
+  @Override
+  public Integer getVratenie() {
+    return vratenie;
+  }
+  @Override
+  public void setVratenie(Integer vratenie) {
+    this.vratenie = vratenie;
   }
 
 }

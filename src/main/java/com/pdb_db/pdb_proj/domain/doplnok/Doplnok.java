@@ -1,5 +1,6 @@
 package com.pdb_db.pdb_proj.domain.doplnok;
 
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,11 +34,16 @@ public class Doplnok implements DoplnokInterface {
   private String popis;
   private String material;
   private String kategoria;
-  private java.sql.Date vyroba;
+  private java.util.Date vyroba;
+  @Transient
+  private rest_operationType rest_operation;
 
   public Doplnok(){}
+  public Doplnok(Integer id){
+    this.id = id;
+  }
 
-  public Doplnok(Integer id, String nazov, String popis, String material,String kategoria, java.sql.Date vyroba)
+  public Doplnok(Integer id, String nazov, String popis, String material,String kategoria, java.util.Date vyroba)
   {
     this.id = id;
     this.nazov = nazov;
@@ -105,11 +111,11 @@ public class Doplnok implements DoplnokInterface {
 
 
   @Override
-  public java.sql.Date getVyroba() {
+  public java.util.Date getVyroba() {
     return vyroba;
   }
   @Override
-  public void setVyroba(java.sql.Date vyroba) {
+  public void setVyroba(java.util.Date vyroba) {
     this.vyroba = vyroba;
   }
 
@@ -124,4 +130,7 @@ public class Doplnok implements DoplnokInterface {
               "kategoria=" + kategoria +
               "vyroba=" + vyroba +'}';
   }
+
+  public rest_operationType getOperation(){ return rest_operation; }
+  public void setOperation(rest_operationType rest_operation){ this.rest_operation = rest_operation; }
 }

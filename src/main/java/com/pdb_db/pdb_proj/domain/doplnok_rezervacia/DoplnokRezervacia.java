@@ -1,5 +1,7 @@
 package com.pdb_db.pdb_proj.domain.doplnok_rezervacia;
 
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,16 +21,50 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
   private Integer id;
   private Integer uzivid;
   private Integer doplnokid;
-
   private Integer rezervaciaid;
 
+  private java.util.Date casPozicania;
+  private java.util.Date casVratenia;
+  private Integer vratenie;
+
+  @Transient
+  private rest_operationType rest_operation;
 
   public DoplnokRezervacia(){}
+  public DoplnokRezervacia(Integer id){
+    this.id = id;
+  }
 
-  public DoplnokRezervacia(Integer uzivid, Integer doplnokid, Integer rezervaciaid) {
+  public DoplnokRezervacia(Integer uzivid,
+                           Integer doplnokid,
+                           Integer rezervaciaid,
+                           java.util.Date casPozicania,
+                           java.util.Date casVratenia,
+                           Integer vratenie)
+  {
     this.uzivid = uzivid;
     this.doplnokid = doplnokid;
     this.rezervaciaid = rezervaciaid;
+    this.casPozicania = casPozicania;
+    this.casVratenia = casVratenia;
+    this.vratenie = vratenie;
+  }
+
+  public DoplnokRezervacia(Integer id,
+                           Integer uzivid,
+                           Integer doplnokid,
+                           Integer rezervaciaid,
+                           java.util.Date casPozicania,
+                           java.util.Date casVratenia,
+                           Integer vratenie)
+  {
+    this.id = id;
+    this.uzivid = uzivid;
+    this.doplnokid = doplnokid;
+    this.rezervaciaid = rezervaciaid;
+    this.casPozicania = casPozicania;
+    this.casVratenia = casVratenia;
+    this.vratenie = vratenie;
   }
 
   @Override
@@ -60,15 +96,8 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
     this.doplnokid = doplnokid;
   }
 
-  @Override
-  public Integer getRezervaciaid() {
-    return rezervaciaid;
-  }
-
-  @Override
-  public void setRezervaciaid(Integer rezervaciaid) {
-    this.rezervaciaid =rezervaciaid;
-  }
+  public Integer getRezervaciaid() { return rezervaciaid; }
+  public void setRezervaciaid(Integer rezervaciaid) { this.rezervaciaid = rezervaciaid; }
 
   @Override
   public String toString()
@@ -79,4 +108,35 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
             "doplnokid=" + doplnokid +'}';
   }
 
+  public rest_operationType getOperation(){ return rest_operation; }
+  public void setOperation(rest_operationType rest_operation){ this.rest_operation = rest_operation; }
+
+  @Override
+  public java.util.Date getCasPozicania() {
+    return casPozicania;
+  }
+  @Override
+  public void setCasPozicania(java.util.Date casPozicania) {
+    this.casPozicania = casPozicania;
+  }
+
+
+  @Override
+  public java.util.Date getCasVratenia() {
+    return casVratenia;
+  }
+  @Override
+  public void setCasVratenia(java.util.Date casVratenia) {
+    this.casVratenia = casVratenia;
+  }
+
+
+  @Override
+  public Integer getVratenie() {
+    return vratenie;
+  }
+  @Override
+  public void setVratenie(Integer vratenie) {
+    this.vratenie = vratenie;
+  }
 }

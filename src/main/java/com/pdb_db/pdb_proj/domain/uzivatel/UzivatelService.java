@@ -1,7 +1,16 @@
 package com.pdb_db.pdb_proj.domain.uzivatel;
 
+import com.pdb_db.pdb_proj.domainMongo.uzivatelMongo.UzivatelRepositoryM;
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
+import org.apache.kafka.clients.admin.NewTopic;
 import com.pdb_db.pdb_proj.domain.doplnok.Doplnok;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.kafka.config.TopicBuilder;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -11,6 +20,7 @@ import java.util.Optional;
 @Service
 public class UzivatelService {
 
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private final UzivatelRepository uzivatelRepository;
 
     @Autowired
@@ -33,7 +43,12 @@ public class UzivatelService {
         {
             throw new IllegalStateException("Uzivatel with this email already exists");
         }
+
+        // Oracle
         uzivatelRepository.save(uzivatel);
+        // Kafka -> MongoDB
+        uzivatel.setOperation(rest_operationType.POST);
+        this.kafka_sendMessage(uzivatel);
     }
 
     /*Operacia: Zmazat uzivatela*/
@@ -42,7 +57,13 @@ public class UzivatelService {
         if (!exists){
             throw new IllegalStateException("Unsuccessful DELETE request. Record with id: "+id+" is NOT exists!");
         }
+
+        // Oracle
         uzivatelRepository.deleteById(id);
+        // Kafka -> MongoDB
+        Uzivatel uzivatel = new Uzivatel(id);
+        uzivatel.setOperation(rest_operationType.DELETE);
+        this.kafka_sendMessage(uzivatel);
     }
 
     /*Operacia: Uprava profilu*/
@@ -89,6 +110,23 @@ public class UzivatelService {
         if (psc != null){
             uR.setPsc(psc);
         }
+
+        // Kafka -> MongoDB
+        uR.setOperation(rest_operationType.PUT);
+        this.kafka_sendMessage(uR);
     }
 
+    @Autowired
+    private KafkaTemplate<Long, String> kafkaTemplate;
+
+    public void kafka_sendMessage(Uzivatel uzivatel) {
+        try {
+            String str_uzivatel = OBJECT_MAPPER.writeValueAsString(uzivatel);
+            //SOT = Source of truth
+            kafkaTemplate.send("uzivatelService_SOT_event", str_uzivatel);
+        } catch (Exception e){
+            System.out.println("Custom exception error [KafkaSender]: " + e.getMessage());
+        }
+
+    }
 }

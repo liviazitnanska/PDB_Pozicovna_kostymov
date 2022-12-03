@@ -50,7 +50,7 @@ public class KostymController
             @RequestParam(required = false) String material,
             @RequestParam(required = false) String kategoria,
             @RequestParam(required = false) Integer velkost,
-            @RequestParam(required = false) java.sql.Date vyroba)
+            @RequestParam(required = false) java.util.Date vyroba)
     {
         kostymService.updateKostym(kostymId,nazov,popis,material,kategoria,velkost,vyroba);
     }

@@ -1,17 +1,19 @@
 package com.pdb_db.pdb_proj.domain.kostym;
 
-import com.pdb_db.pdb_proj.domain.doplnok.Doplnok;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class KostymService {
 
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private final KostymRepository kostymRepository;
 
     @Autowired
@@ -59,7 +61,12 @@ public class KostymService {
         {
             throw new IllegalStateException("Kostym already exists");
         }
+
+        // Oracle
         kostymRepository.save(kostym);
+        // Kafka -> MongoDB
+        kostym.setOperation(rest_operationType.POST);
+        this.kafka_sendMessage(kostym);
     }
 
     public void deleteKostym(Integer kostymId)
@@ -70,11 +77,17 @@ public class KostymService {
         {
             throw new IllegalStateException("Kostym with this ID "+kostymId+" does not exist");
         }
+
+        // Oracle
         kostymRepository.deleteById(kostymId);
+        // Kafka -> MongoDB
+        Kostym kostym = new Kostym(kostymId);
+        kostym.setOperation(rest_operationType.DELETE);
+        this.kafka_sendMessage(kostym);
     }
 
     @Transactional
-    public void updateKostym(Integer kostymId, String nazov, String popis, String material, String kategoria, Integer velkost, Date vyroba)
+    public void updateKostym(Integer kostymId, String nazov, String popis, String material, String kategoria, Integer velkost, java.util.Date vyroba)
     {
         Kostym kostym = kostymRepository.findById(kostymId)
                 .orElseThrow(() -> new IllegalStateException("Kostym with ID "+kostymId+"does not exist"));
@@ -109,5 +122,23 @@ public class KostymService {
         {
             kostym.setVyroba(vyroba);
         }
+
+        // Kafka -> MongoDB
+        kostym.setOperation(rest_operationType.PUT);
+        this.kafka_sendMessage(kostym);
+    }
+
+    @Autowired
+    private KafkaTemplate<Long, String> kafkaTemplate;
+
+    public void kafka_sendMessage(Kostym kostym) {
+        try {
+            String str_kostym = OBJECT_MAPPER.writeValueAsString(kostym);
+            //SOT = Source of truth
+            kafkaTemplate.send("kostymService_SOT_event", str_kostym);
+        } catch (Exception e){
+            System.out.println("Custom exception error [KafkaSender]: " + e.getMessage());
+        }
+
     }
 }

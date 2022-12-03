@@ -46,7 +46,7 @@ public class DoplnokController
             @RequestParam(required = false) String popis,
             @RequestParam(required = false) String material,
             @RequestParam(required = false) String kategoria,
-            @RequestParam(required = false) java.sql.Date vyroba)
+            @RequestParam(required = false) java.util.Date vyroba)
     {
         doplnokService.updateDoplnok(doplnokId,nazov,popis,material,kategoria,vyroba);
     }

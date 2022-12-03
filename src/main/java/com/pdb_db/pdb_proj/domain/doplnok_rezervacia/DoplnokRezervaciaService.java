@@ -1,11 +1,11 @@
 package com.pdb_db.pdb_proj.domain.doplnok_rezervacia;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.pdb_db.pdb_proj.domain.doplnok.Doplnok;
-import com.pdb_db.pdb_proj.domain.kostym_rezervacia.KostymRezervacia;
-import com.pdb_db.pdb_proj.domain.rezervacia.Rezervacia;
-import com.pdb_db.pdb_proj.domain.rezervacia.RezervaciaRepository;
-import com.pdb_db.pdb_proj.domain.uzivatel.Uzivatel;
+import com.pdb_db.pdb_proj.domain.uzivatel.UzivatelRepository;
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -15,13 +15,15 @@ import java.util.Optional;
 @Service
 public class DoplnokRezervaciaService
 {
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+
     private final DoplnokRezervaciaRepository doplnokRezervaciaRepository;
-    private final RezervaciaRepository rezervaciaRepository;
+    private final UzivatelRepository uzivatelRepository;
 
     @Autowired
-    public DoplnokRezervaciaService(DoplnokRezervaciaRepository doplnokRezervaciaRepository, RezervaciaRepository rezervaciaRepository) {
+    public DoplnokRezervaciaService(DoplnokRezervaciaRepository doplnokRezervaciaRepository, UzivatelRepository uzivatelRepository) {
         this.doplnokRezervaciaRepository = doplnokRezervaciaRepository;
-        this.rezervaciaRepository = rezervaciaRepository;
+        this.uzivatelRepository = uzivatelRepository;
     }
 
     public List<DoplnokRezervacia> getDoplnokRezervacie()
@@ -29,16 +31,17 @@ public class DoplnokRezervaciaService
         return doplnokRezervaciaRepository.findAll();
     }
 
-   /* public void addNewDoplnokRezervacia(DoplnokRezervacia doplnokRezervacia) {
-        System.out.println(doplnokRezervacia);
-        doplnokRezervaciaRepository.save(doplnokRezervacia);
-    }*/
 
     public void addNewDoplnokRezervacia(DoplnokRezervacia doplnokRezervacia)
     {
+        System.out.println("DEBUGDEBUG");
+        System.out.println(doplnokRezervacia.getId());
+        System.out.println(doplnokRezervacia.getUzivid());
+
         //Check user
-        Optional<Uzivatel> uzivatelOptional = doplnokRezervaciaRepository.findUzivatelById(doplnokRezervacia.getUzivid());
-        if(!uzivatelOptional.isPresent())
+        boolean uzivatelBool = uzivatelRepository.existsById(doplnokRezervacia.getUzivid());
+
+        if(!uzivatelBool)
         {
             throw new IllegalStateException("Can not create doplnok reservation to non existent user");
         }
@@ -50,48 +53,36 @@ public class DoplnokRezervaciaService
             throw new IllegalStateException("Can not create costume reservation for non existent costume");
         }
 
+        // Oracle
         doplnokRezervaciaRepository.save(doplnokRezervacia);
+        // Kafka -> MongoDB
+        doplnokRezervacia.setOperation(rest_operationType.POST);
+        this.kafka_sendMessage(doplnokRezervacia);
 
-    }
-    public void addNewRezervacia(Rezervacia rezervacia)
-    {
-        //Check user
-        Optional<Uzivatel> uzivatelOptional = rezervaciaRepository.findUzivatelById(rezervacia.getUzivid());
-        if(!uzivatelOptional.isPresent())
-        {
-            throw new IllegalStateException("Can not create doplnok reservation to non existent user");
-        }
-
-        rezervaciaRepository.save(rezervacia);
     }
 
     public void deleteDoplnokRezervacia(Integer doplnokRezervaciaId)
     {
-        boolean exists = doplnokRezervaciaRepository.existsById(doplnokRezervaciaId);
+        DoplnokRezervacia doplnokRezervacia = doplnokRezervaciaRepository.findById(doplnokRezervaciaId)
+                .orElseThrow(() -> new IllegalStateException("DoplnokRezervacia with ID "+doplnokRezervaciaId+" does not exist"));
 
-        if (!exists)
-        {
-            throw new IllegalStateException("DoplnokRezervacia with this ID "+doplnokRezervaciaId+" does not exist");
-        }
-        else
-        {
-            Optional<DoplnokRezervacia> doplnokRezervaciaOptional = doplnokRezervaciaRepository.findById(doplnokRezervaciaId);
-            if(!doplnokRezervaciaOptional.isPresent())
-            {
-                throw new IllegalStateException("Can not delete reservation");
-            }
-            else
-            {
-                rezervaciaRepository.deleteById(doplnokRezervaciaOptional.get().getRezervaciaid());
-            }
-        }
+        //Oracle
         doplnokRezervaciaRepository.deleteById(doplnokRezervaciaId);
+        // Kafka -> MongoDB
+        doplnokRezervacia.setOperation(rest_operationType.DELETE);
+        this.kafka_sendMessage(doplnokRezervacia);
     }
+
     @Transactional
-    public void updateDoplnokRezervacia(Integer doplnokRezervaciaId, Integer uzivid, Integer doplnokid)
+    public void updateDoplnokRezervacia(Integer doplnokRezervaciaId,
+                                        Integer uzivid,
+                                        Integer doplnokid,
+                                        java.util.Date casPozicania,
+                                        java.util.Date casVratenia,
+                                        Integer vratenie)
     {
         DoplnokRezervacia doplnokRezervacia = doplnokRezervaciaRepository.findById(doplnokRezervaciaId)
-                .orElseThrow(() -> new IllegalStateException("DoplnokRezervacia with ID "+doplnokRezervaciaId+"does not exist"));
+                .orElseThrow(() -> new IllegalStateException("DoplnokRezervacia with ID "+doplnokRezervaciaId+" does not exist"));
 
         if (uzivid != null)
         {
@@ -101,7 +92,28 @@ public class DoplnokRezervaciaService
         {
             doplnokRezervacia.setDoplnokid(doplnokid);
         }
+        if (casPozicania != null){
+            doplnokRezervacia.setCasPozicania(casPozicania);
+        }
+        if (casVratenia != null){
+            doplnokRezervacia.setCasVratenia(casVratenia);
+        }
+        if (vratenie != null && (vratenie == 0 || vratenie == 1)) {
+            doplnokRezervacia.setVratenie(vratenie);
+        }
     }
 
+    @Autowired
+    private KafkaTemplate<Long, String> kafkaTemplate;
 
+    public void kafka_sendMessage(DoplnokRezervacia doplnokRezervacia) {
+        try {
+            String str_doplnokRezervacia = OBJECT_MAPPER.writeValueAsString(doplnokRezervacia);
+            //SOT = Source of truth
+            kafkaTemplate.send("doplnokRezervaciaService_SOT_event", str_doplnokRezervacia);
+        } catch (Exception e){
+            System.out.println("Custom exception error [KafkaSender]: " + e.getMessage());
+        }
+
+    }
 }

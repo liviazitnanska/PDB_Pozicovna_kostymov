@@ -1,5 +1,7 @@
 package com.pdb_db.pdb_proj.domain.recenzia_doplnok;
 
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
+
 import javax.persistence.*;
 
 @Entity
@@ -34,6 +36,9 @@ public class RecenziaDoplnok implements RecenziaDoplnokInterface{
   }
 
   public RecenziaDoplnok(){}
+  public RecenziaDoplnok(Integer id){
+    this.id = id;
+  }
   public RecenziaDoplnok(Integer id,
                          String nazov,
                          String popis,
@@ -73,6 +78,8 @@ public class RecenziaDoplnok implements RecenziaDoplnokInterface{
 
   }
 
+  @Transient
+  private rest_operationType rest_operation;
 
 
   @Override
@@ -143,5 +150,8 @@ public class RecenziaDoplnok implements RecenziaDoplnokInterface{
   public void setDoplnokid(Integer doplnokid) {
     this.doplnokid = doplnokid;
   }
+
+  public rest_operationType getOperation(){ return rest_operation; }
+  public void setOperation(rest_operationType rest_operation){ this.rest_operation = rest_operation; }
 
 }

@@ -1,5 +1,6 @@
 package com.pdb_db.pdb_proj.domain.kostym;
 
+
 public interface KostymInterface {
 
     Integer getId();
@@ -32,8 +33,8 @@ public interface KostymInterface {
     void setVelkost(Integer velkost);
 
 
-    java.sql.Date getVyroba();
+    java.util.Date getVyroba();
 
-    void setVyroba(java.sql.Date vyroba);
+    void setVyroba( java.util.Date  vyroba);
 
 }

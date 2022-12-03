@@ -1,5 +1,7 @@
 package com.pdb_db.pdb_proj.domain.recenzia_kostym;
 
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +25,8 @@ public class RecenziaKostym implements RecenziaKostymInterface {
   private Integer nesuhlas;
   private Integer uzivid;
   private Integer kostymid;
+  @Transient
+  private rest_operationType rest_operation;
 
   public RecenziaKostym(String nazov, String popis, Integer suhlas, Integer nesuhlas, Integer uzivid, Integer kostymid) {
     this.nazov = nazov;
@@ -34,6 +38,9 @@ public class RecenziaKostym implements RecenziaKostymInterface {
   }
 
   public RecenziaKostym(){}
+  public RecenziaKostym(Integer id){
+    this.id = id;
+  }
   public RecenziaKostym(Integer id,
                         String nazov,
                         String popis,
@@ -141,5 +148,8 @@ public class RecenziaKostym implements RecenziaKostymInterface {
   public void setKostymid(Integer kostymid) {
     this.kostymid = kostymid;
   }
+
+  public rest_operationType getOperation(){ return rest_operation; }
+  public void setOperation(rest_operationType rest_operation){ this.rest_operation = rest_operation; }
 
 }
