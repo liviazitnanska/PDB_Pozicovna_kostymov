@@ -1,6 +1,12 @@
 package com.pdb_db.pdb_proj.domain.uzivatel;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pdb_db.pdb_proj.domain.doplnok_rezervacia.DoplnokRezervacia;
+import com.pdb_db.pdb_proj.domain.doplnok_rezervacia.DoplnokRezervaciaRepository;
+import com.pdb_db.pdb_proj.domain.doplnok_rezervacia.DoplnokRezervaciaService;
+import com.pdb_db.pdb_proj.domain.kostym_rezervacia.KostymRezervacia;
+import com.pdb_db.pdb_proj.domain.kostym_rezervacia.KostymRezervaciaRepository;
+import com.pdb_db.pdb_proj.domain.kostym_rezervacia.KostymRezervaciaService;
 import com.pdb_db.pdb_proj.domain.wishlist_doplnok.WishlistDoplnok;
 import com.pdb_db.pdb_proj.domain.wishlist_doplnok.WishlistDoplnokRepository;
 import com.pdb_db.pdb_proj.domain.wishlist_doplnok.WishlistDoplnokService;
@@ -21,23 +27,54 @@ public class UzivatelService {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private final UzivatelRepository uzivatelRepository;
+
+    // WishlistDoplnok
     private final WishlistDoplnokRepository wishlistDoplnokRepository;
-    private final WishlistKostymRepository wishlistKostymRepository;
     private final WishlistDoplnokService wishlistDoplnokService;
+
+    // WishlistKostym
+    private final WishlistKostymRepository wishlistKostymRepository;
     private final WishlistKostymService wishlistKostymService;
+
+    // DoplnokRezervacia
+    private final DoplnokRezervaciaRepository doplnokRezervaciaRepository;
+    private final DoplnokRezervaciaService doplnokRezervaciaService;
+
+    // KostymRezervacia
+    private final KostymRezervaciaRepository kostymRezervaciaRepository;
+    private final KostymRezervaciaService kostymRezervaciaService;
+
 
     @Autowired
     public UzivatelService(UzivatelRepository uzivatelRepository,
+                           // WishlistDoplnok
                            WishlistDoplnokRepository wishlistDoplnokRepository,
-                           WishlistKostymRepository wishlistKostymRepository,
                            WishlistDoplnokService wishlistDoplnokService,
-                           WishlistKostymService wishlistKostymService
+                           // WishlistKostym
+                           WishlistKostymRepository wishlistKostymRepository,
+                           WishlistKostymService wishlistKostymService,
+                           // DoplnokRezervacia
+                           DoplnokRezervaciaRepository doplnokRezervaciaRepository,
+                           DoplnokRezervaciaService doplnokRezervaciaService,
+                           // KostymRezervacia
+                           KostymRezervaciaRepository kostymRezervaciaRepository,
+                           KostymRezervaciaService kostymRezervaciaService
+
     ) {
         this.uzivatelRepository = uzivatelRepository;
+        // WishlistDoplnok
         this.wishlistDoplnokRepository = wishlistDoplnokRepository;
-        this.wishlistKostymRepository = wishlistKostymRepository;
         this.wishlistDoplnokService = wishlistDoplnokService;
+        // WishlistKostym
+        this.wishlistKostymRepository = wishlistKostymRepository;
         this.wishlistKostymService = wishlistKostymService;
+        // DoplnokRezervacia
+        this.doplnokRezervaciaRepository = doplnokRezervaciaRepository;
+        this.doplnokRezervaciaService = doplnokRezervaciaService;
+        // KostymRezervacia
+        this.kostymRezervaciaRepository = kostymRezervaciaRepository;
+        this.kostymRezervaciaService = kostymRezervaciaService;
+
     }
 
     public List<Uzivatel> getUzivatel() {
@@ -78,18 +115,29 @@ public class UzivatelService {
         this.kafka_sendMessage(uzivatel);
 
         // Cascade delete all user's doplnok wishes
-        List<WishlistDoplnok> WishlistDoplnokList = wishlistDoplnokRepository.findAllWishlistDoplnokByUzivid(id);
-        for (WishlistDoplnok wishlistDoplnok : WishlistDoplnokList) {
+        List<WishlistDoplnok> wishlistDoplnokList = wishlistDoplnokRepository.findAllWishlistDoplnokByUzivid(id);
+        for (WishlistDoplnok wishlistDoplnok : wishlistDoplnokList) {
             wishlistDoplnokService.deleteWishlist(wishlistDoplnok.getId());
         }
 
 
         // Cascade delete all user's kostym wishes
-        List<WishlistKostym> WishlistKostymList = wishlistKostymRepository.findAllWishlistKostymByUzivid(id);
-        for (WishlistKostym wishlistKostym : WishlistKostymList) {
+        List<WishlistKostym> wishlistKostymList = wishlistKostymRepository.findAllWishlistKostymByUzivid(id);
+        for (WishlistKostym wishlistKostym : wishlistKostymList) {
             wishlistKostymService.deleteWishlist(wishlistKostym.getId());
         }
 
+        // Cascade delete all user's doplnok reservations
+        List<DoplnokRezervacia> doplnokRezervaciaList = doplnokRezervaciaRepository.findAllDoplnokRezervaciaByUzivid(id);
+        for (DoplnokRezervacia doplnokRezervacia : doplnokRezervaciaList){
+            doplnokRezervaciaService.deleteDoplnokRezervacia(doplnokRezervacia.getId());
+        }
+
+        // Cascade delete all user's kostym reservations
+        List<KostymRezervacia> kostymRezervaciaList = kostymRezervaciaRepository.findAllKostymRezervaciaByUzivid(id);
+        for (KostymRezervacia kostymRezervacia : kostymRezervaciaList){
+            kostymRezervaciaService.deleteKostymRezervacia(kostymRezervacia.getId());
+        }
 
     }
 

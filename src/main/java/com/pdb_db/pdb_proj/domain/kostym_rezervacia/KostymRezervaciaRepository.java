@@ -1,9 +1,7 @@
 package com.pdb_db.pdb_proj.domain.kostym_rezervacia;
 
-import com.pdb_db.pdb_proj.domain.doplnok.Doplnok;
 import com.pdb_db.pdb_proj.domain.kostym.Kostym;
 import com.pdb_db.pdb_proj.domain.uzivatel.Uzivatel;
-import com.pdb_db.pdb_proj.domain.wishlist_kostym.WishlistKostym;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -21,4 +19,8 @@ public interface KostymRezervaciaRepository extends JpaRepository<KostymRezervac
     Optional<Kostym> findKostymById(Integer kostymID);
 
     List<KostymRezervacia> findAllByVratenie(Integer vratenie);
+
+    @Query("SELECT k FROM KostymRezervacia k where k.uzivid = ?1")
+    List<KostymRezervacia> findAllKostymRezervaciaByUzivid(Integer id);
+
 }
