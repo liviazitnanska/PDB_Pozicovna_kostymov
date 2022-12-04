@@ -1,9 +1,5 @@
 package com.pdb_db.pdb_proj.tests.wish;
 
-import com.pdb_db.pdb_proj.domain.rezervacia.Rezervacia;
-import com.pdb_db.pdb_proj.domain.wishlist_doplnok.WishlistDoplnok;
-import com.pdb_db.pdb_proj.domain.wishlist_doplnok.WishlistDoplnokRepository;
-import com.pdb_db.pdb_proj.domain.wishlist_doplnok.WishlistDoplnokService;
 import com.pdb_db.pdb_proj.domain.wishlist_kostym.WishlistKostym;
 import com.pdb_db.pdb_proj.domain.wishlist_kostym.WishlistKostymRepository;
 import com.pdb_db.pdb_proj.domain.wishlist_kostym.WishlistKostymService;

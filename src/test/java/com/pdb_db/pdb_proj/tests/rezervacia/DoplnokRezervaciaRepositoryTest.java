@@ -1,7 +1,7 @@
 package com.pdb_db.pdb_proj.tests.rezervacia;
 
-import com.pdb_db.pdb_proj.domain.rezervacia.Rezervacia;
-import com.pdb_db.pdb_proj.domain.rezervacia.RezervaciaRepository;
+import com.pdb_db.pdb_proj.domain.doplnok_rezervacia.DoplnokRezervacia;
+import com.pdb_db.pdb_proj.domain.doplnok_rezervacia.DoplnokRezervaciaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,17 +13,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @SpringBootTest
-public class RezervaciaRepositoryTest
+public class DoplnokRezervaciaRepositoryTest
 {
-
     @Autowired
-    private RezervaciaRepository repository;
+    DoplnokRezervaciaRepository repository;
 
     @Test
     void create_rezervacia_no_user()
     {
 
-        Rezervacia r = new Rezervacia(new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),0,1);
+        DoplnokRezervacia r = new DoplnokRezervacia(1,2,1,new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),0);
         repository.save(r);
 
         boolean exists = false;
@@ -36,15 +35,15 @@ public class RezervaciaRepositoryTest
     @Test
     void get_all_reservations()
     {
-      List<Rezervacia> list = repository.findAll();
+        List<DoplnokRezervacia> list = repository.findAll();
 
         AtomicBoolean exists = new AtomicBoolean(false);
 
-       list.forEach(
+        list.forEach(
                 l ->
                 { if(repository.findById(l.getId()).isPresent())
-                    {
-                        exists.set(true);}
+                {
+                    exists.set(true);}
                     assertThat(exists.get()).isTrue();
                     exists.set(false);
                 }
@@ -54,7 +53,7 @@ public class RezervaciaRepositoryTest
     @Test
     void check_user()
     {
-       Rezervacia r = repository.findById(1).get();
+        DoplnokRezervacia r = repository.findById(1).get();
 
         boolean exists = repository.findUzivatelById(r.getUzivid()).isPresent();
         assertThat(exists).isTrue();
@@ -62,6 +61,4 @@ public class RezervaciaRepositoryTest
         exists = false;
 
     }
-
-
 }

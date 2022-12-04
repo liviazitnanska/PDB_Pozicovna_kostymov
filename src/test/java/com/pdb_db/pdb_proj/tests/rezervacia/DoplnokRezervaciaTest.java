@@ -1,8 +1,11 @@
 package com.pdb_db.pdb_proj.tests.rezervacia;
 
-import com.pdb_db.pdb_proj.domain.rezervacia.Rezervacia;
-import com.pdb_db.pdb_proj.domain.rezervacia.RezervaciaRepository;
-import com.pdb_db.pdb_proj.domain.rezervacia.RezervaciaService;
+import com.pdb_db.pdb_proj.domain.doplnok_rezervacia.DoplnokRezervacia;
+import com.pdb_db.pdb_proj.domain.doplnok_rezervacia.DoplnokRezervaciaRepository;
+import com.pdb_db.pdb_proj.domain.doplnok_rezervacia.DoplnokRezervaciaService;
+import com.pdb_db.pdb_proj.domain.kostym_rezervacia.KostymRezervacia;
+import com.pdb_db.pdb_proj.domain.kostym_rezervacia.KostymRezervaciaRepository;
+import com.pdb_db.pdb_proj.domain.kostym_rezervacia.KostymRezervaciaService;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,20 +18,19 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class RezervaciaTest
-{
+public class DoplnokRezervaciaTest {
     @Autowired
-    RezervaciaRepository repository;
+    DoplnokRezervaciaRepository repository;
 
     @Autowired
-    RezervaciaService service;
+    DoplnokRezervaciaService service;
 
 
     @Test
     @Order(1)
     void create_reservation()
     {
-        Rezervacia r = new Rezervacia(new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), 1,2);
+        DoplnokRezervacia r = new DoplnokRezervacia(2,2,1,new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), 1);
         repository.save(r);
 
         boolean exists = false;
@@ -43,7 +45,7 @@ public class RezervaciaTest
     void show_ongoing_reservations()
     {
         Integer id = 3;
-        List<Rezervacia> list = service.getAllOngoing();
+        List<DoplnokRezervacia> list = service.getAllOngoing();
 
         list.forEach( l->
                 {
@@ -66,7 +68,7 @@ public class RezervaciaTest
 
         assertThat(exists).isTrue();
 
-        service.updateRezervacia(id,null,null,1,null);
+        service.updateDoplnokRezervacia(id,null,null,null,null,1);
 
         assertThat( repository.findById(id).get().getVratenie().equals(1)).isTrue();
     }
@@ -76,7 +78,7 @@ public class RezervaciaTest
     void show_finished_rservations()
     {
         Integer id = 3;
-        List<Rezervacia> list = service.getAllOngoing();
+        List<DoplnokRezervacia> list = service.getAllOngoing();
 
         list.forEach( l->
                 {
@@ -99,7 +101,7 @@ public class RezervaciaTest
 
         assertThat(exists).isTrue();
 
-        service.deleteRezervacia(id);
+        service.deleteDoplnokRezervacia(id);
 
         exists = false;
         if(repository.findById(id).isPresent())
