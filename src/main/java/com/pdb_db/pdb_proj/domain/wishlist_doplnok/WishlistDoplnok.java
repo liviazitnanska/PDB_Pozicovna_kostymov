@@ -1,6 +1,7 @@
 package com.pdb_db.pdb_proj.domain.wishlist_doplnok;
 
 import com.pdb_db.pdb_proj.domain.wishlist_kostym.WishlistKostymInterface;
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
 
 import javax.persistence.*;
 
@@ -23,7 +24,14 @@ public class WishlistDoplnok implements WishlistDoplnokInterface {
     private Integer uzivid;
     private Integer doplnokid;
 
+    // CRUD operation
+    @Transient
+    private rest_operationType rest_operation;
+
     public WishlistDoplnok() {}
+    public WishlistDoplnok(Integer id) {
+        this.id = id;
+    }
 
     public WishlistDoplnok(String nazov, Integer uzivid, Integer doplnokid) {
         this.nazov = nazov;
@@ -72,4 +80,7 @@ public class WishlistDoplnok implements WishlistDoplnokInterface {
     {
         this.doplnokid = doplnokid;
     }
+
+    public rest_operationType getOperation(){ return rest_operation; }
+    public void setOperation(rest_operationType rest_operation){ this.rest_operation = rest_operation; }
 }

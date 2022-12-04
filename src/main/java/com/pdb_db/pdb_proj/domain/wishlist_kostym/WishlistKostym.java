@@ -1,6 +1,8 @@
 package com.pdb_db.pdb_proj.domain.wishlist_kostym;
 
 
+import com.pdb_db.pdb_proj.utilities.rest_operationType;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,8 +25,15 @@ public class WishlistKostym implements WishlistKostymInterface {
 
   private Integer kostymid;
 
+  // CRUD operation
+  @Transient
+  private rest_operationType rest_operation;
+
 
   public WishlistKostym(){}
+  public WishlistKostym(Integer id){
+    this.id = id;
+  }
   public WishlistKostym(String nazov,Integer uzivid, Integer kostymid)
   {
     this.kostymid = kostymid;
@@ -74,5 +83,8 @@ public class WishlistKostym implements WishlistKostymInterface {
   {
       this.kostymid=kostymid;
   }
+
+  public rest_operationType getOperation(){ return rest_operation; }
+  public void setOperation(rest_operationType rest_operation){ this.rest_operation = rest_operation; }
 
 }
