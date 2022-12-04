@@ -47,10 +47,9 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
     this.vratenie = vratenie;
   }
 
-  public KostymRezervacia(Integer uzivid, Integer kostymid, Integer rezervaciaid, Date casPozicania, Date casVratenia, Integer vratenie) {
+  public KostymRezervacia(Integer uzivid, Integer kostymid, Date casPozicania, Date casVratenia, Integer vratenie) {
     this.uzivid = uzivid;
     this.kostymid = kostymid;
-    this.rezervaciaid = rezervaciaid;
     this.casPozicania = casPozicania;
     this.casVratenia = casVratenia;
     this.vratenie = vratenie;
