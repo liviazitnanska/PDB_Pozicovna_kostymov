@@ -1,15 +1,14 @@
 package com.pdb_db.pdb_proj.domain.uzivatel;
 
-import com.pdb_db.pdb_proj.domainMongo.uzivatelMongo.UzivatelRepositoryM;
-import com.pdb_db.pdb_proj.utilities.rest_operationType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pdb_db.pdb_proj.domain.wishlist_doplnok.WishlistDoplnok;
+import com.pdb_db.pdb_proj.domain.wishlist_doplnok.WishlistDoplnokRepository;
+import com.pdb_db.pdb_proj.domain.wishlist_doplnok.WishlistDoplnokService;
+import com.pdb_db.pdb_proj.domain.wishlist_kostym.WishlistKostym;
+import com.pdb_db.pdb_proj.domain.wishlist_kostym.WishlistKostymRepository;
+import com.pdb_db.pdb_proj.domain.wishlist_kostym.WishlistKostymService;
 import com.pdb_db.pdb_proj.utilities.rest_operationType;
-import org.apache.kafka.clients.admin.NewTopic;
-import com.pdb_db.pdb_proj.domain.doplnok.Doplnok;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +21,23 @@ public class UzivatelService {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private final UzivatelRepository uzivatelRepository;
+    private final WishlistDoplnokRepository wishlistDoplnokRepository;
+    private final WishlistKostymRepository wishlistKostymRepository;
+    private final WishlistDoplnokService wishlistDoplnokService;
+    private final WishlistKostymService wishlistKostymService;
 
     @Autowired
-    public UzivatelService(UzivatelRepository uzivatelRepository) {
+    public UzivatelService(UzivatelRepository uzivatelRepository,
+                           WishlistDoplnokRepository wishlistDoplnokRepository,
+                           WishlistKostymRepository wishlistKostymRepository,
+                           WishlistDoplnokService wishlistDoplnokService,
+                           WishlistKostymService wishlistKostymService
+    ) {
         this.uzivatelRepository = uzivatelRepository;
+        this.wishlistDoplnokRepository = wishlistDoplnokRepository;
+        this.wishlistKostymRepository = wishlistKostymRepository;
+        this.wishlistDoplnokService = wishlistDoplnokService;
+        this.wishlistKostymService = wishlistKostymService;
     }
 
     public List<Uzivatel> getUzivatel() {
@@ -64,6 +76,21 @@ public class UzivatelService {
         Uzivatel uzivatel = new Uzivatel(id);
         uzivatel.setOperation(rest_operationType.DELETE);
         this.kafka_sendMessage(uzivatel);
+
+        // Cascade delete all user's doplnok wishes
+        List<WishlistDoplnok> WishlistDoplnokList = wishlistDoplnokRepository.findAllWishlistDoplnokByUzivid(id);
+        for (WishlistDoplnok wishlistDoplnok : WishlistDoplnokList) {
+            wishlistDoplnokService.deleteWishlist(wishlistDoplnok.getId());
+        }
+
+
+        // Cascade delete all user's kostym wishes
+        List<WishlistKostym> WishlistKostymList = wishlistKostymRepository.findAllWishlistKostymByUzivid(id);
+        for (WishlistKostym wishlistKostym : WishlistKostymList) {
+            wishlistKostymService.deleteWishlist(wishlistKostym.getId());
+        }
+
+
     }
 
     /*Operacia: Uprava profilu*/

@@ -5,6 +5,7 @@ import com.pdb_db.pdb_proj.domain.uzivatel.Uzivatel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface WishlistKostymRepository
@@ -21,5 +22,9 @@ public interface WishlistKostymRepository
 
     @Query("SELECT u FROM Kostym u where u.id = ?1")
     Optional<Kostym> findKostymById(Integer kostymid);
+
+    @Query("SELECT k FROM WishlistKostym k where k.uzivid = ?1")
+    List<WishlistKostym> findAllWishlistKostymByUzivid(Integer id);
+
 
 }
