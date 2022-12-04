@@ -8,17 +8,18 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
-//@Configuration
+@Configuration
 public class RecenziaKostymConfigM {
-  /*  @Bean
-    CommandLineRunner commandLineRunnerRecenziaKostym(
+    @Bean
+    CommandLineRunner commandLineRunnerRecenziaKostymM(
             RecenziaKostymRepositoryM repository
     ){
         return args -> {
-            RecenziaKostymM Rec4 = new RecenziaKostymM("Tento kostym je super darcek", "Super kostym", 1,2);
-            RecenziaKostymM Rec5 = new RecenziaKostymM("Spokojna s kostymom", "Krasny kostym", 10,3);
+            RecenziaKostymM Rec4 = new RecenziaKostymM(1,"Tento kostym je super darcek", "Super kostym", 1,2,1,1);
+            RecenziaKostymM Rec5 = new RecenziaKostymM(2,"Spokojna s kostymom", "Krasny kostym", 10,3,2,2);
 
-            repository.saveAll(List.of(Rec4, Rec5));
+            repository.save(Rec4);
+            repository.save(Rec5);
         };
-    }*/
+    }
 }

@@ -4,24 +4,21 @@ import com.pdb_db.pdb_proj.domain.uzivatel.Uzivatel;
 import com.pdb_db.pdb_proj.domain.uzivatel.UzivatelRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Configuration
 public class UzivatelConfigM
 {
-    /*@Bean
+    @Bean
     CommandLineRunner commandLineRunnerUzivatelM(
-            UzivatelRepositoryM repository
+            UzivatelRepositoryM uzivatelRepositoryM
     ){
-        List<String> wishist = new ArrayList<>();
-        wishist.add("Wish1");
-        List<Integer> list1 = new ArrayList<>();
-        list1.add(1);
-
-
         return args -> {
             UzivatelM Rec4 = new UzivatelM(
+                    1,
                     "Meno1",
                     "Priezvisko1",
                     "email@email.com",
@@ -30,9 +27,9 @@ public class UzivatelConfigM
                     "Bánska Bystrica",
                     "Ulica SNP",
                     12,
-                    94945,
-                    wishist,list1,list1);
+                    94945);
             UzivatelM Rec5 = new UzivatelM(
+                    2,
                     "Meno2",
                     "Priezvisko2",
                     "email2@email.com",
@@ -41,10 +38,11 @@ public class UzivatelConfigM
                     "Trenčín",
                     "Ulica ulice",
                     57,
-                    92214
-            ,wishist,list1,list1);
+                    92214);
 
-            repository.saveAll(List.of(Rec4, Rec5));
+
+            uzivatelRepositoryM.save(Rec4);
+            uzivatelRepositoryM.save(Rec5);
         };
-    }*/
+    }
 }

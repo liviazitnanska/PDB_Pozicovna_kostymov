@@ -1,31 +1,45 @@
 package com.pdb_db.pdb_proj.domainMongo.kostymMongo;
 
+import com.pdb_db.pdb_proj.domain.kostym.Kostym;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
-//@Configuration
+@Configuration
 public class KostymConfigM
 {
 
-   /* @Bean
+    @Bean
     CommandLineRunner commandLineRunnerKostymM(KostymRepositoryM repository)
     {
-       List<Integer> list1 = new ArrayList<>();
-            list1.add(1);list1.add(2);
 
         return args -> {
+            KostymM pastier = new KostymM(
+                    1,
+                    "Pastier",
+                    "kostym",
+                    "bavlna",
+                    "muzske",
+                    40,
+                    new java.util.Date(122,Calendar.MARCH,1));
 
-            KostymM pastier =  new  KostymM("Pastier", "kostym","bavlna", "muzske", 40, new Date(System.currentTimeMillis()),list1);
-            KostymM anjel =  new  KostymM("Anjel", "kostym", "saten", "zenske", 36, new Date(System.currentTimeMillis()),list1);
+            KostymM anjel = new KostymM(
+                    2,
+                    "Anjel",
+                    "kostym",
+                    "saten",
+                    "zenske",
+                    36 ,
+                    new java.util.Date(121, Calendar.JANUARY,1));
 
-            repository.saveAll(
-                    List.of(pastier,anjel)
-            );
+
+            repository.save(pastier);
+            repository.save(anjel);
         };
-    }*/
+    }
 }
