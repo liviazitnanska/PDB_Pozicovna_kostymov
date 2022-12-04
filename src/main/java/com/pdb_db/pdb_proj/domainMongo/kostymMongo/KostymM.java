@@ -21,7 +21,6 @@ public class KostymM
     private String kategoria;
     private Integer velkost;
     private java.util.Date vyroba;
-    private ArrayList<Integer> rezervaciaIdList;
 
     public KostymM(){};
 
@@ -29,7 +28,7 @@ public class KostymM
         this.id = id;
     };
 
-    public KostymM(Integer id, String nazov, String popis, String material, String kategoria, Integer velkost, java.util.Date  vyroba, ArrayList <Integer> rezervaciaIdList) {
+    public KostymM(Integer id, String nazov, String popis, String material, String kategoria, Integer velkost, java.util.Date  vyroba) {
         this.id = id;
         this.nazov = nazov;
         this.popis = popis;
@@ -37,7 +36,6 @@ public class KostymM
         this.kategoria = kategoria;
         this.velkost = velkost;
         this.vyroba = vyroba;
-        this.rezervaciaIdList = rezervaciaIdList;
     }
 
     public Integer getId() {
@@ -96,24 +94,6 @@ public class KostymM
         this.vyroba = vyroba;
     }
 
-    public ArrayList <Integer> getRezervaciaIdList() {
-        return rezervaciaIdList;
-    }
 
-    public void setRezervaciaIdList(ArrayList<Integer> rezervaciaIdList) {
-        this.rezervaciaIdList = rezervaciaIdList;
-    }
-
-    public void setNewIdToRezervaciaIdList(Integer id){
-        this.rezervaciaIdList.add(id);
-    }
-
-    public void deleteIdFromRezervaciaIdList(Integer id){
-        this.rezervaciaIdList.remove(id);
-    }
-
-    public boolean ifExistsIdInRezervaciaIdList(Integer id){
-        return this.rezervaciaIdList.contains(id);
-    }
 
 }

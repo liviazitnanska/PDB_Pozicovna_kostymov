@@ -61,8 +61,7 @@ public class DoplnokServiceM {
                             doplnok.getPopis(),
                             doplnok.getMaterial(),
                             doplnok.getKategoria(),
-                            doplnok.getVyroba(),
-                            new ArrayList<>()
+                            doplnok.getVyroba()
                     );
                     // Save object to MongoDB
                     doplnokRepositoryM.save(doplnokM);

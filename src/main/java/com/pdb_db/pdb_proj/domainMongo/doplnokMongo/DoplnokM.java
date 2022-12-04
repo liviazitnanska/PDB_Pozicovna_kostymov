@@ -20,20 +20,18 @@ public class DoplnokM
     private String material;
     private String kategoria;
     private java.util.Date vyroba;
-    private ArrayList<Integer> rezervaciaIdList;
 
     public DoplnokM(){}
     public DoplnokM(Integer id){
         this.id = id;
     }
-    public DoplnokM(Integer id, String nazov, String popis, String material, String kategoria, java.util.Date vyroba, ArrayList<Integer> rezervaciaIdList) {
+    public DoplnokM(Integer id, String nazov, String popis, String material, String kategoria, java.util.Date vyroba) {
         this.id = id;
         this.nazov = nazov;
         this.popis = popis;
         this.material = material;
         this.kategoria = kategoria;
         this.vyroba = vyroba;
-        this.rezervaciaIdList = rezervaciaIdList;
     }
 
     public Integer getId() {
@@ -84,23 +82,5 @@ public class DoplnokM
         this.vyroba = vyroba;
     }
 
-    public ArrayList<Integer> getRecenzieDoplnkovID() {
-        return rezervaciaIdList;
-    }
 
-    public void setRecenzieDoplnkovID(ArrayList<Integer> rezervaciaIdList) {
-        this.rezervaciaIdList = rezervaciaIdList;
-    }
-
-    public void setNewIdToRezervaciaIdList(Integer id){
-        this.rezervaciaIdList.add(id);
-    }
-
-    public void deleteIdFromRezervaciaIdList(Integer id){
-        this.rezervaciaIdList.remove(id);
-    }
-
-    public boolean ifExistsIdInRezervaciaIdList(Integer id){
-        return this.rezervaciaIdList.contains(id);
-    }
 }

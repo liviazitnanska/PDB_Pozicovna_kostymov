@@ -60,9 +60,8 @@ public class KostymServiceM
                             kostym.getMaterial(),
                             kostym.getKategoria(),
                             kostym.getVelkost(),
-                            kostym.getVyroba(),
-                            new ArrayList<>()
-                            );
+                            kostym.getVyroba()
+                    );
                     // Save object to MongoDB
                     kostymRepositoryM.save(kostymM);
                     break;

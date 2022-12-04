@@ -20,8 +20,6 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
   private Integer id;
   private Integer uzivid;
   private Integer kostymid;
-  private Integer rezervaciaid;
-
   private java.util.Date casPozicania;
   private java.util.Date casVratenia;
   private Integer vratenie;
@@ -36,7 +34,6 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
   public KostymRezervacia(Integer id,
                           Integer uzivid,
                           Integer kostymid,
-                          Integer rezervaciaid,
                           java.util.Date casPozicania,
                           java.util.Date casVratenia,
                           Integer vratenie)
@@ -44,7 +41,6 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
     this.id = id;
     this.uzivid = uzivid;
     this.kostymid = kostymid;
-    this.rezervaciaid = rezervaciaid;
     this.casPozicania = casPozicania;
     this.casVratenia = casVratenia;
     this.vratenie = vratenie;
@@ -80,8 +76,6 @@ public class KostymRezervacia implements KostymRezervaciaInterface {
     this.kostymid = kostymid;
   }
 
-  public Integer getRezervaciaid() { return rezervaciaid; }
-  public void setRezervaciaid(Integer rezervaciaid) { this.rezervaciaid = rezervaciaid; }
 
   @Override
   public String toString()

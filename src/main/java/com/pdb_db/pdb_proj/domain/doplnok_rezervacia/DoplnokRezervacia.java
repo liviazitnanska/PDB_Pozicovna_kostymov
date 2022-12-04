@@ -21,8 +21,6 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
   private Integer id;
   private Integer uzivid;
   private Integer doplnokid;
-  private Integer rezervaciaid;
-
   private java.util.Date casPozicania;
   private java.util.Date casVratenia;
   private Integer vratenie;
@@ -37,14 +35,12 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
 
   public DoplnokRezervacia(Integer uzivid,
                            Integer doplnokid,
-                           Integer rezervaciaid,
                            java.util.Date casPozicania,
                            java.util.Date casVratenia,
                            Integer vratenie)
   {
     this.uzivid = uzivid;
     this.doplnokid = doplnokid;
-    this.rezervaciaid = rezervaciaid;
     this.casPozicania = casPozicania;
     this.casVratenia = casVratenia;
     this.vratenie = vratenie;
@@ -53,7 +49,6 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
   public DoplnokRezervacia(Integer id,
                            Integer uzivid,
                            Integer doplnokid,
-                           Integer rezervaciaid,
                            java.util.Date casPozicania,
                            java.util.Date casVratenia,
                            Integer vratenie)
@@ -61,7 +56,6 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
     this.id = id;
     this.uzivid = uzivid;
     this.doplnokid = doplnokid;
-    this.rezervaciaid = rezervaciaid;
     this.casPozicania = casPozicania;
     this.casVratenia = casVratenia;
     this.vratenie = vratenie;
@@ -95,9 +89,6 @@ public class DoplnokRezervacia implements DoplnokRezervaciaInterface {
   public void setDoplnokid(Integer doplnokid) {
     this.doplnokid = doplnokid;
   }
-
-  public Integer getRezervaciaid() { return rezervaciaid; }
-  public void setRezervaciaid(Integer rezervaciaid) { this.rezervaciaid = rezervaciaid; }
 
   @Override
   public String toString()
