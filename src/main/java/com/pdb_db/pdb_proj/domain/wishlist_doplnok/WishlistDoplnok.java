@@ -39,6 +39,13 @@ public class WishlistDoplnok implements WishlistDoplnokInterface {
         this.doplnokid = doplnokid;
     }
 
+    public WishlistDoplnok(Integer id, String nazov, Integer uzivid, Integer doplnokid) {
+        this.id = id;
+        this.nazov = nazov;
+        this.uzivid = uzivid;
+        this.doplnokid = doplnokid;
+    }
+
     @Override
     public Integer getId() {
         return id;

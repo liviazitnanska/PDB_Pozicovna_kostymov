@@ -16,8 +16,8 @@ public class WishlistDoplnokConfig
             WishlistDoplnokRepository repository
     ){
         return args -> {
-            WishlistDoplnok Rec4 = new WishlistDoplnok("Wish1",1,2);
-            WishlistDoplnok Rec5 = new WishlistDoplnok("Wish2",2,1);
+            WishlistDoplnok Rec4 = new WishlistDoplnok(1,"Wish1",1,2);
+            WishlistDoplnok Rec5 = new WishlistDoplnok(2,"Wish2",2,1);
 
             repository.saveAll(List.of(Rec4, Rec5));
         };

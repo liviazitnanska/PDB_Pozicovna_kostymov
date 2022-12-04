@@ -40,6 +40,13 @@ public class WishlistKostym implements WishlistKostymInterface {
     this.nazov=nazov;
     this.uzivid=uzivid;
   }
+  public WishlistKostym(Integer id, String nazov,Integer uzivid, Integer kostymid)
+  {
+    this.id = id;
+    this.kostymid = kostymid;
+    this.nazov=nazov;
+    this.uzivid=uzivid;
+  }
 
 
 

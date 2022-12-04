@@ -14,8 +14,8 @@ public class WishlistKostymConfig {
             WishlistKostymRepository repository
     ){
         return args -> {
-            WishlistKostym Rec4 = new WishlistKostym("Wish1",1,2);
-            WishlistKostym Rec5 = new WishlistKostym("Wish2",2,1);
+            WishlistKostym Rec4 = new WishlistKostym(1,"Wish1",1,2);
+            WishlistKostym Rec5 = new WishlistKostym(2,"Wish2",2,1);
 
             repository.saveAll(List.of(Rec4, Rec5));
         };
