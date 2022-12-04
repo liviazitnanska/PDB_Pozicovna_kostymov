@@ -22,7 +22,7 @@ public class DoplnokRezervaciaRepositoryTest
     void create_rezervacia_no_user()
     {
 
-        DoplnokRezervacia r = new DoplnokRezervacia(1,2,1,new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),0);
+        DoplnokRezervacia r = new DoplnokRezervacia(2,1,new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),0);
         repository.save(r);
 
         boolean exists = false;

@@ -30,7 +30,7 @@ public class DoplnokRezervaciaTest {
     @Order(1)
     void create_reservation()
     {
-        DoplnokRezervacia r = new DoplnokRezervacia(2,2,1,new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), 1);
+        DoplnokRezervacia r = new DoplnokRezervacia(2,1,new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), 1);
         repository.save(r);
 
         boolean exists = false;

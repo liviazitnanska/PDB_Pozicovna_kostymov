@@ -23,7 +23,7 @@ public class KostymRezervaciaRepositoryTest
     void create_rezervacia_no_user()
     {
 
-        KostymRezervacia r = new KostymRezervacia(1,1,2, new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),0);
+        KostymRezervacia r = new KostymRezervacia(1,2, new Date(System.currentTimeMillis()),new Date(System.currentTimeMillis()),0);
         repository.save(r);
 
         boolean exists = false;

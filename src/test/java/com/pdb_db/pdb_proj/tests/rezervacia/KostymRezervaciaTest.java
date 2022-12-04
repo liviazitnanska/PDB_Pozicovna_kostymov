@@ -28,7 +28,7 @@ public class KostymRezervaciaTest
     @Order(1)
     void create_reservation()
     {
-        KostymRezervacia r = new KostymRezervacia(2,2,1,new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), 1);
+        KostymRezervacia r = new KostymRezervacia(2,1,new Date(System.currentTimeMillis()), new Date(System.currentTimeMillis()), 1);
         repository.save(r);
 
         boolean exists = false;
